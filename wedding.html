@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weddings - MotionArc</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            font-size: 16px;
+            --color-text: #fff;
+            --color-bg: #111;
+            --color-link: #de6871;
+            --color-link-hover: #fff;
+            --color-alt: #e1cc75;
+        }
+
+        body {
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+
+        .content {
+            padding: 90px 0 60px;
+        }
+
+        section {
+            margin-bottom: 0;
+        }
+
+        .video-gallery__header,
+        .deliverables__wrap,
+        .features__wrap,
+        .about-prewedding__wrap,
+        .cta__wrap {
+            margin-bottom: 2.5rem;
+        }
+
+        p,
+        .video-gallery__subtitle,
+        .deliverables__subtitle,
+        .features__subtitle,
+        .about-prewedding__subtitle,
+        .about-prewedding__text,
+        .about-prewedding__keypoint,
+        .cta__subtitle {
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 50px 0 40px;
+            }
+
+            .video-gallery__subtitle,
+            .deliverables__subtitle,
+            .features__subtitle,
+            .about-prewedding__subtitle,
+            .about-prewedding__text,
+            .about-prewedding__keypoint,
+            .cta__subtitle {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content {
+                padding: 30px 0 25px;
+            }
+
+            .video-gallery__subtitle,
+            .deliverables__subtitle,
+            .features__subtitle,
+            .about-prewedding__subtitle,
+            .about-prewedding__text,
+            .about-prewedding__keypoint,
+            .cta__subtitle {
+                font-size: 0.8rem;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-link);
+            outline: none;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--color-link-hover);
+        }
+
+        html.has-scroll-smooth {
+            overflow: hidden;
+        }
+
+        html.has-scroll-dragging {
+            user-select: none;
+        }
+
+        .has-scroll-smooth body {
+            overflow: hidden;
+        }
+
+        .has-scroll-smooth [data-scroll-container] {
+            min-height: 100vh;
+        }
+
+        .c-scrollbar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 11px;
+            height: 100vh;
+            transform-origin: center right;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+        }
+
+        .c-scrollbar:hover {
+            transform: scaleX(1.45);
+            opacity: 1;
+        }
+
+        .has-scroll-scrolling .c-scrollbar,
+        .has-scroll-dragging .c-scrollbar {
+            opacity: 1;
+        }
+
+        .c-scrollbar_thumb {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: black;
+            opacity: 0.5;
+            width: 7px;
+            border-radius: 10px;
+            margin: 2px;
+            cursor: grab;
+        }
+
+        .has-scroll-dragging .c-scrollbar_thumb {
+            cursor: grabbing;
+        }
+
+        .popup-ad {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .popup-ad.active {
+            display: flex;
+        }
+
+        .popup-ad__content {
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            background: linear-gradient(135deg, rgba(17, 17, 17, 0.95), rgba(39, 167, 118, 0.1));
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #f29464 0%, #f6838a 50%, #7b67f0 100%) 1;
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        .popup-ad__close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 35px;
+            height: 35px;
+            background: var(--color-link);
+            color: var(--color-text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(39, 167, 118, 0.3);
+        }
+
+        .popup-ad__close:hover {
+            background: var(--color-alt);
+            transform: scale(1.1);
+        }
+
+        .popup-ad__title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .popup-ad__title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--color-link);
+            transition: width 0.3s ease;
+        }
+
+        .popup-ad__title:hover::after {
+            width: 100px;
+        }
+
+        .popup-ad__text {
+            font-size: 1.1rem;
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-ad__button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            background: linear-gradient(100deg, #f29464 0%, #f6838a 50%, #7b67f0 100%);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(39, 167, 118, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .popup-ad__button:hover {
+            background: linear-gradient(100deg, #7b67f0 0%, #f29464 50%, #f6838a 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(39, 167, 118, 0.4);
+        }
+
+        .popup-ad__button i {
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .popup-ad__button:hover i {
+            transform: rotate(15deg);
+        }
+
+        .popup-ad__button .btn-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .popup-ad__button:hover .btn-effect {
+            width: 200px;
+            height: 200px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .popup-ad__content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .popup-ad__title {
+                font-size: 1.5rem;
+            }
+
+            .popup-ad__text {
+                font-size: 0.9rem;
+            }
+
+            .popup-ad__button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .popup-ad__close {
+                top: -10px;
+                right: -10px;
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(17, 17, 17, 0.2);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            background-color: rgba(17, 17, 17, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 30px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-text);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-alt);
+        }
+
+        .social-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .social-links li {
+            margin-left: 15px;
+        }
+
+        .social-links a {
+            color: var(--color-text);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-alt);
+            transform: scale(1.1);
+        }
+
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-btn__burger {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn__burger::before,
+        .menu-btn__burger::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn__burger::before {
+            transform: translateY(-8px);
+        }
+
+        .menu-btn__burger::after {
+            transform: translateY(8px);
+        }
+
+        .menu-btn.open .menu-btn__burger {
+            transform: translateX(-5px);
+            background: transparent;
+        }
+
+        .menu-btn.open .menu-btn__burger::before {
+            transform: rotate(45deg) translate(5px, -5px);
+        }
+
+        .menu-btn.open .menu-btn__burger::after {
+            transform: rotate(-45deg) translate(5px, 5px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .logo-img {
+                height: 35px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: rgba(17, 17, 17, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .social-links {
+                flex-direction: column;
+                position: fixed;
+                top: 50%;
+                right: -100%;
+                transform: translateY(-50%);
+                transition: right 0.5s ease;
+            }
+
+            .social-links.active {
+                right: 20px;
+            }
+
+            .social-links li {
+                margin: 10px 0;
+            }
+
+            .content {
+                padding-top: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .logo-img {
+                height: 30px;
+            }
+
+            .nav-links {
+                width: 90%;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .social-links a {
+                font-size: 1rem;
+            }
+        }
+
+        .content--wedding-hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #111 url('assets/img/backgrounds/1.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .wedding-hero__video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .content--wedding-hero {
+                min-height: 80vh;
+                aspect-ratio: 3/4;
+            }
+
+            .wedding-hero__video {
+                object-fit: cover;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content--wedding-hero {
+                min-height: 70vh;
+                aspect-ratio: 3/4;
+            }
+        }
+
+        .breadcrumb {
+            padding: 1.5rem 3rem;
+            background: rgba(17, 17, 17, 0.5);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb__list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .breadcrumb__item a,
+        .breadcrumb__item span {
+            color: var(--color-text);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb__item a:hover {
+            color: var(--color-alt);
+        }
+
+        .breadcrumb__item:not(:last-child)::after {
+            content: '/';
+            color: var(--color-link);
+            margin-left: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .breadcrumb {
+                padding: 1rem 1.5rem;
+            }
+
+            .breadcrumb__item a,
+            .breadcrumb__item span {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .breadcrumb {
+                padding: 0.8rem 1rem;
+            }
+
+            .breadcrumb__item a,
+            .breadcrumb__item span {
+                font-size: 0.8rem;
+            }
+
+            .breadcrumb__item:not(:last-child)::after {
+                margin-left: 0.8rem;
+            }
+        }
+
+        .content--video-gallery {
+            min-height: 100vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/95.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .video-gallery__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-gallery__header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .video-gallery__title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 1rem 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .video-gallery__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--color-link);
+            transition: width 0.4s ease;
+        }
+
+        .video-gallery__title:hover::after {
+            width: 120px;
+        }
+
+        .video-gallery__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .video-gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .video-gallery__item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            aspect-ratio: 16/9;
+        }
+
+        .video-gallery__item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-gallery__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .video-gallery__play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: var(--color-text);
+            transition: color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+            cursor: pointer;
+            background: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .video-gallery__item:hover .video-gallery__play-btn {
+            color: var(--color-alt);
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(39, 167, 118, 0.5);
+        }
+
+        .video-gallery__title-text {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--color-text);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal__content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+        }
+
+        .video-modal__iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: 0;
+        }
+
+        .video-modal__close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2rem;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .video-modal__close:hover {
+            color: var(--color-alt);
+        }
+
+        @media (max-width: 992px) {
+            .video-gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content--video-gallery {
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+
+            .video-gallery__title {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .video-gallery__subtitle {
+                font-size: 0.9rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+
+            .video-gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .video-gallery__play-btn {
+                font-size: 2rem;
+                width: 50px;
+                height: 50px;
+            }
+
+            .video-gallery__title-text {
+                font-size: 0.9rem;
+                padding: 0.4rem;
+                bottom: 8px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content--video-gallery {
+                padding: 2rem 1rem;
+            }
+
+            .video-gallery__title {
+                font-size: 1.8rem;
+            }
+
+            .video-gallery__subtitle {
+                font-size: 0.8rem;
+            }
+
+            .video-gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .video-gallery__play-btn {
+                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .video-gallery__title-text {
+                font-size: 0.8rem;
+                padding: 0.3rem;
+                bottom: 5px;
+            }
+
+            .video-modal__content {
+                width: 95%;
+            }
+
+            .video-modal__close {
+                top: -30px;
+                font-size: 1.5rem;
+            }
+        }
+
+        .content--deliverables {
+            min-height: 80vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/82.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .deliverables__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .deliverables__title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .deliverables__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--color-link);
+            transition: width 0.3s ease;
+        }
+
+        .deliverables__title:hover::after {
+            width: 120px;
+        }
+
+        .deliverables__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .deliverables__table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .deliverables__table th,
+        .deliverables__table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .deliverables__table th {
+            background: var(--color-link);
+            color: var(--color-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .deliverables__table td {
+            font-size: 1rem;
+            color: var(--color-text);
+            opacity: 0.9;
+        }
+
+        .deliverables__table tr:hover td {
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .content--deliverables {
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+
+            .deliverables__title {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .deliverables__subtitle {
+                font-size: 0.9rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+
+            .deliverables__table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .deliverables__table th,
+            .deliverables__table td {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content--deliverables {
+                padding: 2rem 1rem;
+            }
+
+            .deliverables__title {
+                font-size: 1.8rem;
+            }
+
+            .deliverables__subtitle {
+                font-size: 0.8rem;
+            }
+
+            .deliverables__table th,
+            .deliverables__table td {
+                font-size: 0.8rem;
+                padding: 0.6rem;
+                min-width: 100px;
+            }
+        }
+
+        .content--features {
+            min-height: 80vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/62.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .features__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .features__title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .features__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #8270f7;
+            transition: width 0.3s ease;
+        }
+
+        .features__title:hover::after {
+            width: 120px;
+        }
+
+        .features__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .features__table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .features__table th,
+        .features__table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features__table th {
+            background: #8270f7;
+            color: var(--color-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .features__table td {
+            font-size: 1rem;
+            color: var(--color-text);
+            opacity: 0.9;
+        }
+
+        .features__table tr:hover td {
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .content--features {
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+
+            .features__title {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .features__subtitle {
+                font-size: 0.9rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+
+            .features__table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .features__table th,
+            .features__table td {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content--features {
+                padding: 2rem 1rem;
+            }
+
+            .features__title {
+                font-size: 1.8rem;
+            }
+
+            .features__subtitle {
+                font-size: 0.8rem;
+            }
+
+            .features__table th,
+            .features__table td {
+                font-size: 0.8rem;
+                padding: 0.6rem;
+                min-width: 100px;
+            }
+        }
+
+        .content--about-prewedding {
+            min-height: 80vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/91.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .about-prewedding__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-prewedding__title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .about-prewedding__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--color-link);
+            transition: width 0.3s ease;
+        }
+
+        .about-prewedding__title:hover::after {
+            width: 120px;
+        }
+
+        .about-prewedding__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .about-prewedding__text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .about-prewedding__text::before {
+            content: '\f004';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 1.2rem;
+        }
+
+        .about-prewedding__keypoints {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .about-prewedding__keypoint {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .about-prewedding__keypoint::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .content--about-prewedding {
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+
+            .about-prewedding__title {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .about-prewedding__subtitle {
+                font-size: 0.9rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+
+            .about-prewedding__text,
+            .about-prewedding__keypoint {
+                font-size: 0.9rem;
+                padding-left: 25px;
+            }
+
+            .about-prewedding__text::before,
+            .about-prewedding__keypoint::before {
+                font-size: 0.9rem;
+                top: 3px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content--about-prewedding {
+                padding: 2rem 1rem;
+            }
+
+            .about-prewedding__title {
+                font-size: 1.8rem;
+            }
+
+            .about-prewedding__subtitle {
+                font-size: 0.8rem;
+            }
+
+            .about-prewedding__text,
+            .about-prewedding__keypoint {
+                font-size: 0.8rem;
+                padding-left: 20px;
+            }
+
+            .about-prewedding__text::before,
+            .about-prewedding__keypoint::before {
+                font-size: 0.8rem;
+                top: 2px;
+            }
+        }
+
+        .content--cta {
+            min-height: 100vh;
+            padding: 6rem 3rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111 url('assets/img/gradients/28.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        @media (max-width: 576px) {
+            .content--wedding-hero {
+                background: #111 url('assets/img/gradients/Mobile-View/81.jpg') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+
+            .content--video-gallery {
+                background: #111 url('assets/img/gradients/Mobile-View/81.jpg') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+
+            .content--deliverables {
+                background: #111 url('assets/img/gradients/Mobile-View/82.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+
+            .content--features {
+                background: #111 url('assets/img/gradients/Mobile-View/121.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+
+            .content--about-prewedding {
+                background: #111 url('assets/img/gradients/Mobile-View/62.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+
+            .content--cta {
+                background: #111 url('assets/img/gradients/Mobile-View/48.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+        }
+
+        .cta__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta__title {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .cta__title span {
+            color: var(--color-link);
+            position: relative;
+            display: inline-block;
+        }
+
+        .cta__title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(39, 167, 118, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+
+        .cta__title:hover span::after {
+            height: 15px;
+        }
+
+        .cta__subtitle {
+            font-size: 1.5rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta__buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .cta__button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta__button--primary {
+            background: var(--color-link);
+            color: var(--color-text);
+            box-shadow: 0 5px 15px rgba(39, 167, 118, 0.3);
+        }
+
+        .cta__button--secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-link);
+        }
+
+        .cta__button i {
+            margin-right: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta__button:hover {
+            transform: translateY(-5px);
+        }
+
+        .cta__button--primary:hover {
+            background: var(--color-link-hover);
+            box-shadow: 0 10px 25px rgba(39, 167, 118, 0.4);
+        }
+
+        .cta__button--secondary:hover {
+            background: rgba(39, 167, 118, 0.1);
+        }
+
+        .cta__button:hover i {
+            transform: rotate(15deg);
+        }
+
+        .cta__button .btn-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .cta__button:hover .btn-effect {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta__socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .cta__social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .cta__social-link:hover {
+            background: var(--color-link);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .content--cta {
+                padding: 4rem 1.5rem;
+                min-height: auto;
+            }
+
+            .cta__title {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .cta__subtitle {
+                font-size: 1rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+
+            .cta__buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .cta__button {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content--cta {
+                padding: 3rem 1rem;
+                min-height: 70vh;
+            }
+
+            .cta__title {
+                font-size: 1.8rem;
+            }
+
+            .cta__subtitle {
+                font-size: 0.8rem;
+            }
+
+            .cta__button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .cta__socials {
+                gap: 1rem;
+            }
+
+            .cta__social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        .content--footer {
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .frame__copyright {
+            font-size: 1rem;
+            color: var(--color-link);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .content--footer {
+                padding: 2rem 1rem;
+            }
+
+            .frame__copyright {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content--footer {
+                padding: 1.5rem 1rem;
+            }
+
+            .frame__copyright {
+                font-size: 0.8rem;
+            }
+        }
+
+        .section-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+
+        .price-tag-wrap {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .price-tag--modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            background: linear-gradient(100deg, #f29464 0%, #de6871 50%, #8270f7 100%);
+            padding: 1.2rem 3.5rem;
+            border-radius: 60px;
+            box-shadow: 0 8px 32px rgba(39, 167, 118, 0.25), 0 2px 10px rgba(39, 167, 118, 0.15);
+            letter-spacing: 2px;
+            border: 4px solid #fff;
+            text-shadow: 0 2px 8px rgba(39, 167, 118, 0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .price-tag__icon {
+            font-size: 2.2rem;
+            margin-right: 1.2rem;
+            color: #ffe066;
+            filter: drop-shadow(0 2px 8px rgba(39, 167, 118, 0.15));
+            animation: popIcon 1.2s cubic-bezier(.68, -0.55, .27, 1.55) infinite alternate;
+        }
+
+        @keyframes popIcon {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.15) rotate(-8deg);
+            }
+        }
+
+        .price-tag__text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            margin-right: 1.2rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(39, 167, 118, 0.25);
+        }
+
+        .price-tag__ribbon {
+            position: absolute;
+            top: -18px;
+            right: -30px;
+            background: linear-gradient(90deg, #ffe066 0%, #e1cc75 100%);
+            color: #222;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(39, 167, 118, 0.15);
+            letter-spacing: 1px;
+            z-index: 2;
+            text-transform: uppercase;
+            border: 2px solid #fff;
+            animation: ribbonPop 1.2s cubic-bezier(.68, -0.55, .27, 1.55) infinite alternate;
+        }
+
+        .price-tag__ribbon--premium {
+            background: linear-gradient(90deg, #e1cc75 0%, #ffe066 100%);
+        }
+
+        @keyframes ribbonPop {
+            0% {
+                transform: scale(1) rotate(-2deg);
+            }
+
+            100% {
+                transform: scale(1.08) rotate(4deg);
+            }
+        }
+
+        .price-tag--modern:hover {
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 12px 40px rgba(39, 167, 118, 0.35), 0 4px 20px rgba(39, 167, 118, 0.25);
+        }
+
+        @media (max-width: 576px) {
+            .price-tag--modern {
+                font-size: 1.2rem;
+                padding: 0.7rem 1.2rem;
+                border-radius: 30px;
+            }
+
+            .price-tag__icon {
+                font-size: 1.2rem;
+                margin-right: 0.5rem;
+            }
+
+            .price-tag__text {
+                font-size: 1rem;
+                margin-right: 0.5rem;
+            }
+
+            .price-tag__ribbon {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+                top: -10px;
+                right: -10px;
+            }
+        }
+
+        .whatsapp-chat-btn {
+            position: fixed;
+            left: 32px;
+            bottom: 32px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 8px 32px rgba(18, 140, 126, 0.18), 0 2px 10px rgba(18, 140, 126, 0.10);
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+            text-decoration: none;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            font-size: 2.2rem;
+            border: 2.5px solid transparent;
+            background-clip: padding-box;
+            overflow: visible;
+        }
+
+        .whatsapp-chat-btn::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            padding: 0.5px;
+            background: linear-gradient(135deg, #f29464 0%, #de6871 50%, #8270f7 100%);
+            z-index: -1;
+            transition: background 0.2s;
+        }
+
+        .whatsapp-chat-btn:hover::before {
+            background: linear-gradient(135deg, #8270f7 0%, #f29464 50%, #de6871 100%);
+        }
+
+        .whatsapp-chat-btn:hover {
+            box-shadow: 0 12px 40px rgba(18, 140, 126, 0.28);
+            transform: scale(1.09);
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .whatsapp-chat-btn .fa-whatsapp {
+            color: #fff;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+        }
+
+        .whatsapp-tooltip {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            left: 110%;
+            bottom: 50%;
+            transform: translateY(50%);
+            background: rgba(17, 17, 17, 0.7);
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 8px;
+            font-size: 1rem;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(18, 140, 126, 0.18);
+            transition: opacity 0.2s;
+            backdrop-filter: blur(6px);
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #f29464 0%, #de6871 50%, #8270f7 100%) 1;
+        }
+
+        .whatsapp-chat-btn:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 576px) {
+            .whatsapp-chat-btn {
+                left: 12px;
+                bottom: 12px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+            }
+
+            .whatsapp-tooltip {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://wa.me/919999999999" class="whatsapp-chat-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <div data-scroll-container>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/moko-logo.webp" alt="MotionArc Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="My-Resume.html">My Resume</a></li>
+                <li><a href="pre-wedding.html">Pre-Weddings</a></li>
+                <li><a href="wedding.html">Weddings</a></li>
+                <li><a href="Album&Kit.html">Album & Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <ul class="social-links">
+                <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i
+                            class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="https://www.github.com" target="_blank" aria-label="GitHub"><i
+                            class="fab fa-github"></i></a></li>
+            </ul>
+            <div class="menu-btn">
+                <div class="menu-btn__burger"></div>
+            </div>
+        </nav>
+        <section class="content content--wedding-hero" data-scroll-section>
+            <div class="section-overlay"></div>
+            <video class="wedding-hero__video" autoplay muted loop playsinline>
+                <source src="assets/video/Wedding-Hero.webm" type="video/webm">
+            </video>
+        </section>
+        <section class="breadcrumb" data-scroll-section>
+            <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb__item"><span>Weddings</span></li>
+            </ul>
+        </section>
+        <div class="popup-ad" id="demoPopup">
+            <div class="popup-ad__content">
+                <div class="popup-ad__close"><i class="fas fa-times"></i></div>
+                <h2 class="popup-ad__title">Get a Stunning Demo Edit!</h2>
+                <p class="popup-ad__text">Share your small footage with us, and we’ll create a cinematic demo edit at
+                    the lowest cost. See your love story come to life with our professional touch!</p>
+                <a href="Form.html" class="popup-ad__button">
+                    <i class="fas fa-video"></i> Request Your Demo <span class="btn-effect"></span>
+                </a>
+            </div>
+        </div>
+        <section class="content content--video-gallery" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="video-gallery__wrap">
+                <div class="video-gallery__header" data-scroll data-scroll-speed="2">
+                    <h2 class="video-gallery__title">Wedding Teasers & Trailers</h2>
+                    <p class="video-gallery__subtitle">Short, vibrant clips that highlight the essence of your wedding
+                        day with cinematic energy and emotion.</p>
+                </div>
+                <div class="video-gallery__grid" data-scroll data-scroll-speed="1">
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1VpmF5KVv9erDNc9k06mRrzxAdUeKsDPY/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/71.webp"
+                            alt="Wedding Teaser 1 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Joyful Moments Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1Q36lqXNhVAaPMq8Sot3Mt--URTS2vKC6/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/72.webp"
+                            alt="Wedding Teaser 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Elegant Vows Teaser</p>
+                    </div>
+                    <!-- Add more items with their respective Google Drive iframe embed codes -->
+                    <!-- Placeholder for remaining teasers, replace with actual embed codes -->
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/13U0HEXQg3g8Q841IXijBm6Tl9eLodbeF/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/73.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <!-- Continue for 74.webp to 82.webp with their respective Google Drive embed codes -->
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1FYr21tG4BmZFq3qFblaOSW6glwWQa-fk/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/74.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1dnRSZ-K5aCWtUJq1KSpgXerJFqRrh8Bv/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/75.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1PSHhzQEvvZB1JY4AVN5M5ErOXplt_iTE/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/76.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1G6oJ2-m-k15LfmryKmb9PV4-NzltDfD1/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/77.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1JQZbiDLR3X2CE5tb9mu9cLIOTkji3enR/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/78.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/15RVNXcp3O1fjtvVMHcNC3TUSaF-QLBc5/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/79.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1Q36lqXNhVAaPMq8Sot3Mt--URTS2vKC6/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/80.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1vRHgckngsbhMfQPIPoSonjdNyDXjw6dh/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/81.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1VpmF5KVv9erDNc9k06mRrzxAdUeKsDPY/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/82.webp"
+                            alt="Wedding Teaser 3 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content content--video-gallery" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="video-gallery__wrap">
+                <div class="video-gallery__header" data-scroll data-scroll-speed="2">
+                    <h2 class="video-gallery__title">Wedding Films</h2>
+                    <p class="video-gallery__subtitle">Comprehensive films that narrate the full story of your wedding
+                        day, capturing every emotion and moment in cinematic detail.</p>
+                </div>
+                <div class="video-gallery__grid" data-scroll data-scroll-speed="1">
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1uVTMBc41WZSwdLTw3iHITrN8FKkGC_d1/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/51.webp" alt="Wedding Film 1 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Forever Love Film</p>
+                    </div>
+                    <!-- Add more items with their respective Google Drive iframe embed codes -->
+                    <!-- Placeholder for remaining films, replace with actual embed codes -->
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1hCMSfWUE99BdNqryS_X5-XuqwLifrBMX/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/52.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <!-- Continue for 53.webp to 66.webp with their respective Google Drive embed codes -->
+                     <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1V3XVrWPYrXqUwjF6fW-_bzLpwMUn0fsL/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/53.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/16y6eH12AerG1wIJSCmJ6lNri1cbmpmua/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/54.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/13V_Idg1p9Ktbgp-NvYK4X6VJfpcKD9O0/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/56.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1dQNMVmZRMqPy6jTgK7zMaGxlzQHnxBnx/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/57.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1mKy0SH74czeLYLorGxsZgGlXR8Jfxva2/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/58.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/152ZRStuGlUZ2H9OGawYKs0l5UOORU1RV/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/59.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1JoQjZTblgWsHfVSsf_iHEma3j4NfS_38/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/60.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/182mC-WfSfbt8OWqLw2eqZZXTEwelm5t3/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/61.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/14W7C0WpaJ1yswIsJ3HLNkZdphXMo9IWm/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/62.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1irXvZZ1PeHQzHi8rStkMFfIiJPEnjkG4/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/63.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1FpUVYFmYbOT6x8LC_jlxdf8SHUw0jFFE/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/64.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1IlqH8-4vqD21jOoBVOREV8pdfFzY7hGw/preview"  style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/65.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                    <div class="video-gallery__item"
+                        data-video='<iframe src="https://drive.google.com/file/d/1r_6CxQ8S-zGtu_5d95hDbrwqKwLgCC-2/preview"  style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/66.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+        <section class="content content--deliverables" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="deliverables__wrap">
+                <h2 class="deliverables__title">Pricing</h2>
+                <p class="deliverables__subtitle">Choose the perfect editing pack for your pre-wedding film. Transparent
+                    pricing, premium quality.</p>
+                <h3 class="deliverables__table-title"
+                    style="font-size:2rem; margin-top:2.5rem; margin-bottom:0.5rem; color: #f29464; text-align:center;">
+                    Basic Editing Pack</h3>
+                <p class="deliverables__subtitle" style="text-align:center;">Included Deliverables</p>
+                <table class="deliverables__table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1-Minute Teaser</td>
+                            <td>Short, high-impact highlight edit with cinematic transitions — perfect for WhatsApp
+                                sharing or social media.</td>
+                        </tr>
+                        <tr>
+                            <td>2-3 Min Teaser</td>
+                            <td>Synced to romantic tracks, this edit captures the essence of your love story — ideal for
+                                Instagram/YouTube.</td>
+                        </tr>
+                        <tr>
+                            <td>5-6 Min Short Film</td>
+                            <td>A narrative-driven film with ambient sound, music overlays, and seamless editing to tell
+                                your story.</td>
+                        </tr>
+                        <tr>
+                            <td>2-3 Social Media Reels</td>
+                            <td>Vertical format (9:16), engaging 30-45 sec edits with hooks — ready for Instagram &
+                                YouTube Shorts.</td>
+                        </tr>
+                        <tr>
+                            <td>Photo Slideshow (Optional)</td>
+                            <td>A cinematic slideshow of selected stills, synced with music, for a cohesive pre-wedding
+                                presentation.</td>
+                        </tr>
+                        <tr>
+                            <td>Color-Graded Footage</td>
+                            <td>Cinematic grading tailored to your theme — romantic, vibrant, or dreamy aesthetics.</td>
+                        </tr>
+                        <tr>
+                            <td>Basic Audio Cleanup</td>
+                            <td>Noise removal and sound enhancement for clear audio in dialogues or ambient sounds.</td>
+                        </tr>
+                        <tr>
+                            <td>Logo Animation (Optional)</td>
+                            <td>Custom animated intro/outro or branding for a professional touch.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="price-tag-wrap">
+                    <span class="price-tag price-tag--modern">
+                        <i class="fa-solid fa-crown price-tag__icon"></i>
+                        <span class="price-tag__text">Starting from ₹8,000/-</span>
+                        <span class="price-tag__ribbon">Best Value</span>
+                    </span>
+                </div>
+                <h3 class="deliverables__table-title"
+                    style="font-size:2rem; margin-top:2.5rem; margin-bottom:0.5rem; color: #f29464; text-align:center;">
+                    Premium Editing Pack</h3>
+                <p class="deliverables__subtitle" style="text-align:center;">Included Deliverables</p>
+                <table class="deliverables__table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1-Minute Teaser</td>
+                            <td>Short, high-impact highlight edit with cinematic transitions — perfect for WhatsApp
+                                sharing or social media.</td>
+                        </tr>
+                        <tr>
+                            <td>2-3 Min Teaser</td>
+                            <td>Synced to romantic tracks, this edit captures the essence of your love story — ideal for
+                                Instagram/YouTube.</td>
+                        </tr>
+                        <tr>
+                            <td>5-6 Min Short Film</td>
+                            <td>A narrative-driven film with ambient sound, music overlays, and seamless editing to tell
+                                your story.</td>
+                        </tr>
+                        <tr>
+                            <td>2-3 Social Media Reels</td>
+                            <td>Vertical format (9:16), engaging 30-45 sec edits with hooks — ready for Instagram &
+                                YouTube Shorts.</td>
+                        </tr>
+                        <tr>
+                            <td>Photo Slideshow (Optional)</td>
+                            <td>A cinematic slideshow of selected stills, synced with music, for a cohesive pre-wedding
+                                presentation.</td>
+                        </tr>
+                        <tr>
+                            <td>Color-Graded Footage</td>
+                            <td>Cinematic grading tailored to your theme — romantic, vibrant, or dreamy aesthetics.</td>
+                        </tr>
+                        <tr>
+                            <td>Basic Audio Cleanup</td>
+                            <td>Noise removal and sound enhancement for clear audio in dialogues or ambient sounds.</td>
+                        </tr>
+                        <tr>
+                            <td>Logo Animation (Optional)</td>
+                            <td>Custom animated intro/outro or branding for a professional touch.</td>
+                        </tr>
+                        <tr>
+                            <td>Advanced Color Grading</td>
+                            <td>Premium cinematic color grading for a unique, high-end look.</td>
+                        </tr>
+                        <tr>
+                            <td>Soundtrack Selection</td>
+                            <td>Custom soundtrack selection and mixing for emotional impact.</td>
+                        </tr>
+                        <tr>
+                            <td>Extra Revision Round</td>
+                            <td>One additional revision round for perfect results.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="price-tag-wrap">
+                    <span class="price-tag price-tag--modern">
+                        <i class="fa-solid fa-gem price-tag__icon"></i>
+                        <span class="price-tag__text">Starting from ₹13,000/- only</span>
+                        <span class="price-tag__ribbon price-tag__ribbon--premium">Premium</span>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="content content--features" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="features__wrap">
+                <h2 class="features__title">Extra Add-On Services</h2>
+                <p class="features__subtitle">Value-added services to elevate your pre-wedding film experience.</p>
+                <table class="features__table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fast Turnaround<br><span style="font-size:0.95em; color:var(--color-alt);">Express
+                                    delivery in 3–5 days</span></td>
+                            <td>Get your film delivered quickly with our express option.</td>
+                            <td>₹2,000</td>
+                        </tr>
+                        <tr>
+                            <td>Style Matching<br><span style="font-size:0.95em; color:var(--color-alt);">Match
+                                    reference video style</span></td>
+                            <td>We’ll match the tone, cuts, and pacing of your reference videos.</td>
+                            <td>₹1,500</td>
+                        </tr>
+                        <tr>
+                            <td>Footage from Any Source<br><span style="font-size:0.95em; color:var(--color-alt);">DSLR,
+                                    drone, mobile, etc.</span></td>
+                            <td>Editing for footage from any device or format.</td>
+                            <td>₹1,000</td>
+                        </tr>
+                        <tr>
+                            <td>Revisions<br><span style="font-size:0.95em; color:var(--color-alt);">Extra revision
+                                    rounds</span></td>
+                            <td>Additional minor revision rounds for your satisfaction.</td>
+                            <td>₹800 per round</td>
+                        </tr>
+                        <tr>
+                            <td>Cloud Delivery<br><span style="font-size:0.95em; color:var(--color-alt);">Google Drive,
+                                    WeTransfer, etc.</span></td>
+                            <td>Final files shared via your preferred cloud platform.</td>
+                            <td>₹500</td>
+                        </tr>
+                        <tr>
+                            <td>Preview Links for Clients<br><span
+                                    style="font-size:0.95em; color:var(--color-alt);">Password-protected links</span>
+                            </td>
+                            <td>Easy sharing with secure preview links for clients.</td>
+                            <td>₹400</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="content content--about-prewedding" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="about-prewedding__wrap">
+                <h2 class="about-prewedding__title">About Pre-Weddings</h2>
+                <p class="about-prewedding__subtitle">Crafting cinematic love stories that capture the essence of your
+                    journey together.</p>
+                <p class="about-prewedding__text">Pre-wedding films and teasers are more than just videos—they’re a
+                    celebration of your unique love story. I specialize in creating visually stunning and emotionally
+                    resonant films that reflect your personalities, your journey, and the moments that define your
+                    relationship. From romantic beachside shoots to vibrant urban adventures, I work closely with you to
+                    understand your vision and bring it to life with cinematic precision.</p>
+                <p class="about-prewedding__text">My approach combines creative storytelling with technical expertise. I
+                    use advanced editing tools like Adobe Premiere Pro, After Effects, and AI-enhanced software to
+                    ensure every frame is polished, every transition is seamless, and every emotion is amplified.
+                    Whether it’s a short, punchy teaser for social media or a longer, narrative-driven film, I focus on
+                    capturing the authenticity of your connection while adding a touch of cinematic magic.</p>
+                <ul class="about-prewedding__keypoints">
+                    <li class="about-prewedding__keypoint">Personalized Storytelling: Each film is tailored to reflect
+                        your unique love story and personal style.</li>
+                    <li class="about-prewedding__keypoint">Cinematic Quality: High-end editing techniques, color
+                        grading, and sound design for a professional finish.</li>
+                    <li class="about-prewedding__keypoint">Cultural Sensitivity: Understanding and incorporating
+                        traditional elements for meaningful representation.</li>
+                    <li class="about-prewedding__keypoint">Social Media Ready: Optimized formats for Instagram, YouTube,
+                        and other platforms to maximize engagement.</li>
+                    <li class="about-prewedding__keypoint">Fast Turnaround: Efficient workflows using AI tools to
+                        deliver high-quality films on time.</li>
+                </ul>
+                <p class="about-prewedding__text">Every pre-wedding project is a collaboration. I listen to your ideas,
+                    incorporate your feedback, and deliver a film that feels personal and timeless. Let’s create a
+                    visual keepsake that you’ll cherish for years to come.</p>
+            </div>
+        </section>
+        <section class="content content--cta" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="cta__wrap">
+                <h2 class="cta__title" data-scroll data-scroll-speed="2">Let's Create <span>Something</span>
+                    Extraordinary</h2>
+                <p class="cta__subtitle" data-scroll data-scroll-speed="1">Your story deserves to be told with the same
+                    passion and beauty with which it was lived. Let's collaborate to create a cinematic masterpiece
+                    you'll cherish forever.</p>
+                <div class="cta__buttons" data-scroll data-scroll-speed="1">
+                    <a href="Form.html" class="cta__button cta__button--primary">
+                        <i class="fas fa-play"></i> Start Your Project <span class="btn-effect"></span>
+                    </a>
+                    <a href="contact.html" class="cta__button cta__button--secondary">
+                        <i class="fas fa-photo-video"></i> Get In Touch
+                    </a>
+                </div>
+                <div class="cta__socials" data-scroll data-scroll-speed="0.5">
+                    <a href="#" class="cta__social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+        <section class="content content--footer" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="frame--footer">
+                <p class="frame__copyright">© 2025 MotionArc. All rights reserved.</p>
+            </div>
+        </section>
+        <div class="video-modal" id="videoModal">
+            <div class="video-modal__content">
+                <span class="video-modal__close"><i class="fas fa-times"></i></span>
+                <div class="video-modal__iframe"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script>
+        // Locomotive Scroll
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true,
+            smartphone: { smooth: true },
+            tablet: { smooth: true }
+        });
+
+        // Menu Toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const socialLinks = document.querySelector('.social-links');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            socialLinks.classList.toggle('active');
+        });
+
+        // Popup Ad
+        const popup = document.getElementById('demoPopup');
+        const closePopup = document.querySelector('.popup-ad__close');
+        setTimeout(() => {
+            popup.classList.add('active');
+        }, 1000);
+        closePopup.addEventListener('click', () => {
+            popup.classList.remove('active');
+        });
+
+        // Video Modal
+        const videoModal = document.getElementById('videoModal');
+        const videoIframeContainer = videoModal.querySelector('.video-modal__iframe');
+        const videoClose = videoModal.querySelector('.video-modal__close');
+        const videoItems = document.querySelectorAll('.video-gallery__item');
+
+        videoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoEmbed = item.getAttribute('data-video');
+                videoIframeContainer.innerHTML = videoEmbed;
+                videoModal.classList.add('active');
+            });
+        });
+
+        videoClose.addEventListener('click', () => {
+            videoModal.classList.remove('active');
+            videoIframeContainer.innerHTML = '';
+        });
+
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                videoIframeContainer.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MOKO | Creative Visual Solutions</title>
+    <meta name="description" content="Professional product photography, commercial site shoots, brand identity design and video editing services by Tirth Bhavsar of MotionArc." />
+    <meta name="keywords" content="product photography, commercial shoots, brand identity, video editing, motionarc, tirth bhavsar" />
+    <meta name="author" content="MotionArc" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://use.typekit.net/rmd7deq.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+    <style>
+        /* General section styling for full-screen background */
+        section {
+            position: relative;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+        /* Overlay to ensure text readability */
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+            z-index: -1;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            section {
+                background-attachment: scroll; /* Disable fixed background on mobile for performance */
+            }
+        }
+    </style>
+</head>
+<body class="demo-home">
+    <!-- Navbar -->
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/+917778056001" class="whatsapp-chat-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/img/moko-logo.webp" alt="MotionArc Logo" class="logo-img">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="My-Resume.html">My Resume</a></li>
+            <li><a href="pre-wedding.html">Pre-Weddings</a></li>
+            <li><a href="wedding.html">Weddings</a></li>
+            <li><a href="Album&Kit.html">Album & Kit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <ul class="social-links">
+            <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="https://www.github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+        </ul>
+        <div class="menu-btn">
+            <div class="menu-btn__burger"></div>
+        </div>
+    </nav>
+    <main data-scroll-container>
+        <!-- Hero Section -->
+        <section class="tiles tiles--columns-rotated tiles--darker" id="grid">
+            <div class="tiles__wrap">
+                <div class="tiles__line" data-scroll data-scroll-speed="1" data-scroll-target="#grid">
+                    <video src="assets/video/Hero-Gallery/5-sec-1.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-2.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-3.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-4.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-11.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                </div>
+                <div class="tiles__line" data-scroll data-scroll-speed="-1" data-scroll-target="#grid">
+                    <video src="assets/video/Hero-Gallery/5-sec-6.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-6.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-8.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-9.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-10.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                </div>
+                <div class="tiles__line" data-scroll data-scroll-speed="1" data-scroll-target="#grid">
+                    <video src="assets/video/Hero-Gallery/5-sec-11.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-7.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-13.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-16.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-17.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                </div>
+                <div class="tiles__line" data-scroll data-scroll-speed="-1" data-scroll-target="#grid">
+                    <video src="assets/video/Hero-Gallery/5-sec-18.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-19.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-1.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-2.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-6.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                </div>
+                <div class="tiles__line" data-scroll data-scroll-speed="1" data-scroll-target="#grid">
+                    <video src="assets/video/Hero-Gallery/5-sec-5.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-10.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-11.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-12.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                    <video src="assets/video/Hero-Gallery/5-sec-9.webm" class="tiles__line-img" muted loop autoplay playsinline></video>
+                </div>
+            </div>
+            <h3 class="tiles__title" data-scroll data-scroll-call="titleAnim">DYNAMIC SPACES</h3>
+        </section>
+
+        <!-- About Section -->
+        <section class="content content--about section-about" data-scroll>
+            <div class="about-wrapper">
+                <div class="about-media" data-scroll data-scroll-speed="1">
+                    <div class="about-media__video-wrapper">
+                        <video class="about-media__video" autoplay muted loop playsinline preload="none">
+                            <source src="assets/video/tirth-intro.webm" type="video/mp4">
+                        </video>
+                        <div class="about-media__overlay"></div>
+                    </div>
+                </div>
+                <div class="about-text-container" data-scroll data-scroll-speed="-1">
+                    <h2 class="about-title"> Video Edits by -  Tirth Bhavsar.</h2>
+                    <div class="about-text">
+                        <p>Welcome to MOKO, where every wedding becomes a film-worthy memory. I'm Tirth Bhavsar, A passionate wedding video editor and solopreneur based in Vadodara, Gujarat, bringing cinematic storytelling to your most precious day.</p>
+                        <p>With over 3years of experience in the editing film industry, i've helped dozens of clients turn raw footage into breathtaking, emotion-driven narratives that can be cherished for lifetime.</p>
+                        <p>I've worked with both individual couples and Professional studios on 50+ wedding across diverse cultures - Gujarati, Punjabi, South Indian, Christian and Destination Weddings</p>
+                    </div>
+                </div>
+            </div>
+    
+        </section>
+
+        <!-- IPL Galleries Section -->
+        <section class="content content--ipl-galleries section-galleries" data-scroll>
+            <h2 class="ipl-galleries-title">What I Offer</h2>
+            <p class="ipl-galleries-subtitle">Not just a video editor — a visual storyteller & collaborative partner.</p>
+            <ul class="ipl-galleries">
+                <li>
+                    <div class="ipl-gallery-overlay"></div>
+                    <div class="ipl-gallery-info">
+                        <h2>Pre-Wedding Intro</h2>
+                        <p>(1-2 minutes)</p>
+                        <p>A longer, more expressive film that tells your story-from getting ready to the final farewell.</p>
+                        <a href="pre-wedding.html" class="ipl-gallery-btn">See Portfolio</a>
+                    </div>
+                    <div class="ipl-gallery-bg-img">
+                        <img src="assets/img/Services/service-11.jpg" alt="Timeless Vows Video Thumbnail" loading="lazy">
+                    </div>
+                </li>
+                <li>
+                    <div class="ipl-gallery-overlay"></div>
+                    <div class="ipl-gallery-info">
+                        <h2>Pre-Wedding Trailer</h2>
+                        <p>(3-4 minutes)</p>
+                        <p>A longer, more expressive film that tells your story-from getting ready to the final farewell.</p>
+                        <a href="pre-wedding.html" class="ipl-gallery-btn">See Portfolio</a>
+                    </div>
+                    <div class="ipl-gallery-bg-img">
+                        <img src="assets/img/Services/service-12.jpg" alt="Timeless Vows Video Thumbnail" loading="lazy">
+                    </div>
+                </li>
+                <li>
+                    <div class="ipl-gallery-overlay"></div>
+                    <div class="ipl-gallery-info">
+                        <h2>Pre-Wedding Film</h2>
+                        <p>(6-8 minutes)</p>
+                        <p>A longer, more expressive film that tells your story-from getting ready to the final farewell.</p>
+                       
+                        <a href="pre-wedding.html" class="ipl-gallery-btn">See Portfolio</a>
+                    </div>
+                    <div class="ipl-gallery-bg-img">
+                        <img src="assets/img/Services/service-13.jpg" alt="Timeless Vows Video Thumbnail" loading="lazy">
+                    </div>
+                </li>
+                <li>
+                    <div class="ipl-gallery-overlay"></div>
+                    <div class="ipl-gallery-info">
+                        <h2>Wedding Teaser</h2>
+                        <p>(1-2 minutes)</p>
+                        <p>A short, high-impact cinematic teaser capturing the essence of your big day.</p>
+                        <a href="wedding.html" class="ipl-gallery-btn">See Portfolio</a>
+                    </div>
+                    <div class="ipl-gallery-bg-img">
+                        <img src="assets/img/Services/service-14.jpg" alt="Urban Pulse Video Thumbnail" loading="lazy">
+                    </div>
+                </li>
+                <li>
+                    <div class="ipl-gallery-overlay"></div>
+                    <div class="ipl-gallery-info">
+                        <h2>Wedding Trailer</h2>
+                        <p>(3-5 minutes)</p>
+                        <p>A longer, more expressive film that tells your story-from getting ready to the final farewell.</p>
+                        <a href="wedding.html" class="ipl-gallery-btn">See Portfolio</a>
+                    </div>
+                    <div class="ipl-gallery-bg-img">
+                        <img src="assets/img/Services/service-15.jpg" alt="Timeless Vows Video Thumbnail" loading="lazy">
+                    </div>
+                </li>
+                <li>
+                    <div class="ipl-gallery-overlay"></div>
+                    <div class="ipl-gallery-info">
+                        <h2>Full Wedding Video</h2>
+                        <p>(30-90 minutes)</p>
+                        <p>A complete documentation of your wedding events, beautifully edited with continuity flow.</p>
+                        <a href="wedding.html" class="ipl-gallery-btn">See Portfolio</a>
+                    </div>
+                    <div class="ipl-gallery-bg-img">
+                        <img src="assets/img/Services/service-16.jpg" alt="Brand Spotlight Video Thumbnail" loading="lazy">
+                    </div>
+                </li>    
+            </ul>
+            <!-- Dots for horizontal scroll indicator (mobile only) -->
+            <div class="ipl-galleries-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </section>
+
+       <section class="footballers-gallery">
+  <div class="footballers-carousel">
+    <span class="ronaldo" style="--i:1">
+      <img src="assets/img/Services/30.webp" alt="Ronaldo" />
+    </span>
+    <span class="messi" style="--i:2">
+      <img src="assets/img/Services/31.webp" alt="Messi" />
+    </span>
+    <span class="neymar" style="--i:3">
+      <img src="assets/img/Services/32.webp" alt="Neymar" />
+    </span>
+    <span class="mbappe" style="--i:4">
+      <img src="assets/img/Services/33.webp" alt="Mbappe" />
+    </span>
+    <span class="haaland" style="--i:5">
+      <img src="assets/img/Services/34.webp" alt="Haaland" />
+    </span>
+    <span class="kaka" style="--i:6">
+      <img src="assets/img/Services/35.webp" alt="Kaka" />
+    </span>
+    <span class="zidane" style="--i:7">
+      <img src="assets/img/Services/36.webp" alt="Zidane" />
+    </span>
+    <span class="ronaldinho" style="--i:8">
+      <img src="assets/img/Services/37.webp" alt="Ronaldinho" />
+    </span>
+  </div>
+</section>
+
+
+
+        <!-- Technical Skills Section
+        <div class="virat">
+            <div class="kohli">
+                <img src="assets/img/Services/service=10.jpg" alt="Color Grading" />
+                <div class="content">
+                    <h2>Color Grading</h2>
+                    <ul>
+                        <li>High-end cinematic color grading to maintain emotional tone.</li>
+                        <li>Custom LUTs for haldi, pheras, reception — each with unique warmth.</li>
+                        <li>Skin tones corrected precisely, preserving background richness.</li>
+                        <li>Highlights, shadows, and contrast fine-tuned for visual depth.</li>
+                        <li>Final pass includes vignette, saturation & white balance control.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="kohli">
+                <img src="assets/img/Services/service-5.jpg" alt="Transitions" />
+                <div class="content">
+                    <h2>Cinematic Transitions</h2>
+                    <ul>
+                        <li>Smooth transitions that add rhythm — never distractions.</li>
+                        <li>Whip pans, motion zooms, and overlays enhance flow.</li>
+                        <li>Perfectly timed with music beats and emotion shifts.</li>
+                        <li>No overused templates — only meaningful visual movement.</li>
+                        <li>Transitions synced with lyrics, beats, and emotions.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="kohli">
+                <img src="assets/img/Services/service-3.jpg" alt="Slow Motion" />
+                <div class="content">
+                    <h2>Slow Motion Sync with Music</h2>
+                    <ul>
+                        <li>Footage shot at 60–240fps is slowed down with clean optical flow.</li>
+                        <li>Used in key emotional scenes like bridal entry, varmala, rituals.</li>
+                        <li>Each slow-mo beat is synced musically for dramatic impact.</li>
+                        <li>Speed ramps transition in and out of real-time seamlessly.</li>
+                        <li>Soft sound design enhances stretched scenes without abrupt cuts.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="kohli">
+                <img src="assets/img/Services/service-8.jpg" alt="Drone Shots" />
+                <div class="content">
+                    <h2>Drone Footage Integration</h2>
+                    <ul>
+                        <li>Aerials establish grandeur and geographic context.</li>
+                        <li>Transitions from ground to drone footage are smooth.</li>
+                        <li>Graded, stabilized, and synced with music swells.</li>
+                        <li>Placed narratively — not just thrown in randomly.</li>
+                        <li>Sky grading and horizon leveling for cinematic match.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="kohli">
+                <img src="assets/img/Services/service-7.jpg" alt="Audio Mastering" />
+                <div class="content">
+                    <h2>Audio Cleaning & Mastering</h2>
+                    <ul>
+                        <li>Dialogues and ambience cleaned using pro noise reduction.</li>
+                        <li>Music and vocals mixed with dynamic range control.</li>
+                        <li>Echoes and background noise removed surgically.</li>
+                        <li>Sound design supports emotion, never overpowers visuals.</li>
+                        <li>Reverb control and spectral editing for clarity in big venues.</li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+
+        
+        <!-- Video Portfolio Section -->
+        <section class="content content--video-categories section-video-categories" data-scroll style="background-image: url('assets/img/gradients/13.jpg');">
+            <h2 class="video-categories-title">Video Portfolio</h2>
+            <p class="video-categories-subtitle">Explore my work across various genres</p>
+            <div class="video-categories-container">
+                <aside class="video-categories-sidebar" data-scroll data-scroll-speed="0.5">
+                    <ul class="video-categories-filters">
+                        <li><button class="video-filter-btn active" data-filter="Pre-Wedding-Teaser">Pre-Wedding Teaser</button></li>
+                        <li><button class="video-filter-btn" data-filter="Pre-Wedding-Film">Pre-Wedding Film</button></li>
+                        <li><button class="video-filter-btn" data-filter="Wedding-Trailer">Wedding Trailer</button></li>
+                        <li><button class="video-filter-btn" data-filter="Wedding-Film">Wedding Film</button></li>
+                        <li><button class="video-filter-btn" data-filter="Other-Events">Other Events</button></li>
+                    </ul>
+                </aside>
+                
+                
+        </section>
+
+         <!-- Tools Section -->
+        <section class="content content--tools section-tools" data-scroll>
+            <h2 class="tools-title">Tools Used Throughout</h2>
+            <p class="tools-subtitle">Mastering the tools that shape stories</p>
+            <div class="tools-container">
+                <div class="tool-item" data-scroll data-scroll-speed="0.5">
+                    <img src="assets/img/Icons/ic-2.png" alt="Adobe Premiere" class="tool-icon">
+                    <span class="tool-name">Premiere Pro</span>
+                </div>
+                <div class="tool-item" data-scroll data-scroll-speed="0.7">
+                    <img src="assets/img/Icons/ic-6.png" alt="Davinci Resolve" class="tool-icon">
+                    <span class="tool-name">Davinci Resolve</span>
+                </div>
+                <div class="tool-item" data-scroll data-scroll-speed="0.9">
+                    <img src="assets/img/Icons/ic-4.png" alt="Adobe After Effects" class="tool-icon">
+                    <span class="tool-name">After Effects</span>
+                </div>
+                <div class="tool-item" data-scroll data-scroll-speed="1.1">
+                    <img src="assets/img/Icons/ic-5.png" alt="Adobe Audition" class="tool-icon">
+                    <span class="tool-name">Audition</span>
+                </div>
+                <div class="tool-item" data-scroll data-scroll-speed="1.3">
+                    <img src="assets/img/Icons/ic-7.png" alt="Frame.io" class="tool-icon">
+                    <span class="tool-name">Frame.io / Notion</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section class="content content--mosaic section-mosaic" data-scroll>
+            <h2 class="mosaic-title">My Career</h2>
+            <p class="mosaic-subtitle">Unveiling a decade of creative mastery</p>
+            <div class="mosaic-grid" data-scroll>
+                <div class="mosaic-tile" data-scroll data-scroll-speed="0.5">
+                    <div class="mosaic-content">
+                        <h3>MOKO- Video Editor</h3>
+                        <p class="mosaic-year">2024 - Present</p>
+                        <p>Currently editing wedding films, short films & YouTube content. Delivering cinematic narratives across diverse formats and styles.</p>
+                    </div>
+                </div>
+                <div class="mosaic-tile" data-scroll data-scroll-speed="0.7">
+                    <div class="mosaic-content">
+                        <h3>Freelance Photographer</h3>
+                        <p class="mosaic-year">2024 - 2025</p>
+                        <p>Worked with 8–10 brands on product & commercial shoots. Delivered high-impact visual content for campaigns and digital branding.</p>
+                    </div>
+                </div>
+                <div class="mosaic-tile" data-scroll data-scroll-speed="0.9">
+                    <div class="mosaic-content">
+                        <h3>Wedding Video Editor – Framing Tales</h3>
+                        <p class="mosaic-year">2023 – 2024</p>
+                        <p>Edited pre-wedding and wedding films as a freelancer. Crafted emotional, story-driven visuals with music, pacing & aesthetic cuts.</p>
+                    </div>
+                </div>
+                <div class="mosaic-tile" data-scroll data-scroll-speed="1.1">
+                    <div class="mosaic-content">
+                        <h3>Video Editor at Kelvin-Tech</h3>
+                        <p class="mosaic-year">2021 - 2023</p>
+                        <p>Created polished educational videos for academic content. Managed scripting, visuals, and edits to enhance learning experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose MOKO -->
+        <section class="content content--numbered content--offer">
+            <h2 class="offer-title">Why Choose MOKO</h2>
+            <p class="offer-subtitle">Not just a video editor — a visual storyteller & collaborative partner.</p>
+            <div class="offer-grid">
+                <div class="offer-card" data-scroll data-scroll-speed="0.5">
+                    <div class="offer-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="offer-name">One-on-One Attention</h3>
+                    <p class="offer-desc">Every cut, transition, and color tone is personally handled by me - ensuring unmatched consistency and care.</p>
+                </div>
+                <div class="offer-card" data-scroll data-scroll-speed="0.7">
+                    <div class="offer-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="offer-name">Story-Driven Editing</h3>
+                    <p class="offer-desc">Each film is built around your real moments — not pre-defined timelines. Laughter, glances, hugs, and rituals.</p>
+                </div>
+                <div class="offer-card" data-scroll data-scroll-speed="0.9">
+                    <div class="offer-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="offer-name">Cinematic Precision</h3>
+                    <p class="offer-desc">From high-end color grading to smooth slow-motion sync and audio mastering, your film will look like movie.</p>
+                </div>
+                <div class="offer-card" data-scroll data-scroll-speed="1.1">
+                    <div class="offer-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="offer-name">Sound That Speaks</h3>
+                    <p class="offer-desc">Dialogues, vows, ambient moments — all cleaned, balanced, and layered with music to evoke deep emotion.</p>
+                </div>
+            </div>
+        </section>
+
+                <section class="content content--cta" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="cta__wrap">
+                <h2 class="cta__title" data-scroll data-scroll-speed="2">Let's Create <span>Something</span> Extraordinary</h2>
+                <p class="cta__subtitle" data-scroll data-scroll-speed="1">Your story deserves to be told with the same passion and beauty with which it was lived. Let's collaborate to create a cinematic masterpiece you'll cherish forever.</p>
+                <div class="cta__buttons" data-scroll data-scroll-speed="1">
+                    <a href="Form.html" class="cta__button cta__button--primary">
+                        <i class="fas fa-play"></i> Start Your Project <span class="btn-effect"></span>
+                    </a>
+                    <a href="contact.html" class="cta__button cta__button--secondary">
+                        <i class="fas fa-photo-video"></i> Get In Touch
+                    </a>
+                </div>
+                <div class="cta__socials" data-scroll data-scroll-speed="0.5">
+                    <a href="#" class="cta__social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Creativity Section -->
+        <section class="tiles tiles--oneline" id="grid2">
+            <div class="tiles__wrap">
+                <div class="tiles__line" data-scroll data-scroll-speed="2" data-scroll-target="#grid2" data-scroll-direction="horizontal">
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-1.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-2.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-3.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-4.webm" type="video/mp4"></video></div>
+                </div>
+            </div>
+            <h2 class="tiles__title tiles__title--right tiles__title--full tiles__title--alt" data-scroll data-scroll-speed="2">Creativity</h2>
+        </section>
+
+        <!-- Vision Section -->
+        <section class="tiles tiles--oneline" id="grid3">
+            <div class="tiles__wrap">
+                <div class="tiles__line" data-scroll data-scroll-speed="-2" data-scroll-target="#grid3" data-scroll-direction="horizontal">
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-5.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-6.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-7.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-8.webm" type="video/mp4"></video></div>
+                </div>
+            </div>
+            <h2 class="tiles__title tiles__title--left tiles__title--full tiles__title--alt" data-scroll data-scroll-speed="2">Vision</h2>
+        </section>
+
+        <!-- Impact Section -->
+        <section class="tiles tiles--oneline" id="grid4">
+            <div class="tiles__wrap">
+                <div class="tiles__line" data-scroll data-scroll-speed="2" data-scroll-target="#grid4" data-scroll-direction="horizontal">
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-9.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-10.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-11.webm" type="video/mp4"></video></div>
+                    <div class="tiles__line-img"><video autoplay loop muted playsinline><source src="assets/video/Hero-Gallery/5-sec-12.webm" type="video/mp4"></video></div>
+                </div>
+            </div>
+            <h2 class="tiles__title tiles__title--right tiles__title--full tiles__title--alt" data-scroll data-scroll-speed="2">Impact</h2>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="content content--numbered content--testimonials">
+            <h2 class="testimonials-title">What Clients Say</h2>
+            <p class="testimonials-subtitle">Trusted by brands and businesses</p>
+            <div class="testimonials-container">
+                <div class="testimonials-track" id="testimonials-track-1">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"Tirth's product photography increased our online sales by 40%. His attention to detail is remarkable."</div>
+                        <div class="testimonial-author">- Rohan Mehta, EcomGuru</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"The brand identity created by MotionArc perfectly captured our company's ethos. Highly recommended!"</div>
+                        <div class="testimonial-author">- Priya Shah, UrbanBrew</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"Our commercial site photos have received countless compliments. Tirth understands lighting like no one else."</div>
+                        <div class="testimonial-author">- Arjun Patel, Skyline Hotels</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"The video editing transformed our raw footage into a compelling story that resonates with our audience."</div>
+                        <div class="testimonial-author">- Neha Gupta, GreenLife</div>
+                    </div>
+                </div>
+                <div class="testimonials-track" id="testimonials-track-2">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"Working with MotionArc was seamless. The final deliverables exceeded our expectations in quality and creativity."</div>
+                        <div class="testimonial-author">- Vikram Joshi, TechNova</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"Tirth has an incredible ability to capture the essence of a brand through visuals. Truly talented!"</div>
+                        <div class="testimonial-author">- Ananya Reddy, StyleMint</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"The product catalog photography helped us secure major retail partnerships. Worth every penny."</div>
+                        <div class="testimonial-author">- Rajiv Malhotra, CraftedLiving</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">"MotionArc's work on our restaurant photos increased our reservations by 30%. Amazing results!"</div>
+                        <div class="testimonial-author">- Sanjay Verma, SpiceRoute</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="content content--numbered content--contact" id="contact">
+            <div class="contact-container">
+                <div class="contact-profile" data-scroll data-scroll-speed="1">
+                    <div class="contact-image" style="background-image:url(assets/img/tirth-profile.jpg)">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <h2 class="contact-name">Tirth Bhavsar</h2>
+                    <p class="contact-title">Video Editor, MOKO.</p>
+                </div>
+                <div class="contact-info-centered">
+                    <div class="contact-card contact-card--email" data-scroll data-scroll-speed="0.5">
+                        <div class="contact-card-inner">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <a href="mailto:tirth.motionarc@gmail.com">mokotirth@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card contact-card--phone" data-scroll data-scroll-speed="0.7">
+                        <div class="contact-card-inner">
+                            <i class="fas fa-phone"></i>
+                            <h3>Phone</h3>
+                            <a href="tel:+917778856801">+91 7778856801</a>
+                        </div>
+                    </div>
+                    <div class="contact-card contact-card--location" data-scroll data-scroll-speed="0.9">
+                        <div class="contact-card-inner">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Location</h3>
+                            <span>Ajwa Road, Vadodara, 390019</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form" data-scroll data-scroll-speed="1">
+                    <h2 class="form-title">Get in Touch</h2>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                        <span class="input-border"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                        <span class="input-border"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <span class="input-border"></span>
+                    </div>
+                    <button class="submit-btn">Send Message <span class="btn-effect"></span></button>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <div class="frame--footer">
+            <div class="frame frame--footer">
+                <div class="frame__copyright" data-aos="fade-up">
+                    © 2025 MOKO. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script type="module" src="assets/JS/script.js"></script>
+    <style>
+    .whatsapp-chat-btn {
+        position: fixed;
+        left: 32px;
+        bottom: 32px;
+        right: auto;
+        top: auto;
+        z-index: 9999;
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 8px 32px rgba(18,140,126,0.18), 0 2px 10px rgba(18,140,126,0.10);
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: box-shadow 0.2s, transform 0.2s, background 0.2s, border 0.2s;
+        text-decoration: none;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        font-size: 2rem;
+        padding: 0;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        /* Gradient border using pseudo-element */
+        position: fixed;
+        overflow: visible;
+    }
+    .whatsapp-chat-btn::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        padding: 0.5px;
+        background: linear-gradient(135deg, #ff00ab 0%, #f29464 25%, #7b67f0 50%,  #27a776 75%, #00d3d1 100%);
+        z-index: -1;
+        pointer-events: none;
+        transition: background 0.2s;
+    }
+    .whatsapp-chat-btn:hover::before {
+        background: linear-gradient(135deg, #00d3d1 0%, #27a776 25%, #7b67f0 50%, #f29464 75%, #ff00ab 100%);
+    }
+    
+    .whatsapp-chat-btn:hover {
+        box-shadow: 0 12px 40px rgba(18,140,126,0.28);
+        transform: scale(1.09);
+        background: rgba(255,255,255,0.18);
+        /* border handled by ::before */
+    }
+    .whatsapp-chat-btn .fa-whatsapp {
+        font-size: 2.2rem;
+        color: #fff;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+    }
+    .whatsapp-tooltip {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        left: 110%;
+        bottom: 50%;
+        transform: translateY(50%);
+        background: rgba(17,17,17,0.7);
+        color: #fff;
+        padding: 0.5em 1em;
+        border-radius: 8px;
+        font-size: 1rem;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(18,140,126,0.18);
+        transition: opacity 0.2s, border 0.2s;
+        pointer-events: none;
+        backdrop-filter: blur(6px);
+        border: 2px solid;
+        border-image: linear-gradient(135deg, #ff00ab 0%, #f29464 25%, #7b67f0 50%,  #27a776 75%, #00d3d1 100%);
+        border-image-slice: 1;
+    }
+    .whatsapp-chat-btn:hover .whatsapp-tooltip {
+        opacity: 1;
+        visibility: visible;
+        border-image: linear-gradient(135deg, #ff00ab 0%, #f29464 25%, #7b67f0 50%,  #27a776 75%, #00d3d1 100%);
+        border-image-slice: 1;
+    }
+    @media (max-width: 576px) {
+        .whatsapp-chat-btn {
+            position: fixed;
+            left: 12px;
+            bottom: 12px;
+            right: auto;
+            top: auto;
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            padding: 0;
+            overflow: visible;
+        }
+        .whatsapp-chat-btn::before {
+            border-radius: 50%;
+        }
+        }
+        .whatsapp-tooltip {
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+    
+    @media (max-width: 576px) {
+        .whatsapp-chat-btn {
+            left: 12px;
+            bottom: 12px;
+            font-size: 1.5rem;
+            padding: 0.5em 0.9em 0.5em 0.7em;
+        }
+        .whatsapp-tooltip {
+            font-size: 0.9rem;
+        }
+    }
+
+    .cta__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .cta__title {
+            font-size: 5rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .cta__title span {
+            color: var(--color-link);
+            position: relative;
+            display: inline-block;
+        }
+        .cta__title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(39, 167, 118, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        .cta__title:hover span::after {
+            height: 15px;
+        }
+        .cta__subtitle {
+            font-size: 1.5rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+        .cta__buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .cta__button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta__button--primary {
+            background: var(--color-link);
+            color: var(--color-text);
+            box-shadow: 0 5px 15px rgba(39, 167, 118, 0.3);
+        }
+        .cta__button--secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-link);
+        }
+        .cta__button i {
+            margin-right: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        .cta__button:hover {
+            transform: translateY(-5px);
+        }
+        .cta__button--primary:hover {
+            background: var(--color-link-hover);
+            box-shadow: 0 10px 25px rgba(39, 167, 118, 0.4);
+        }
+        .cta__button--secondary:hover {
+            background: rgba(39, 167, 118, 0.1);
+        }
+        .cta__button:hover i {
+            transform: rotate(15deg);
+        }
+        .cta__button .btn-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .cta__button:hover .btn-effect {
+            width: 300px;
+            height: 300px;
+        }
+        .cta__socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .cta__social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+        .cta__social-link:hover {
+            background: var(--color-link);
+            transform: translateY(-5px) scale(1.1);
+        }
+        @media (max-width: 768px) {
+            .content--cta {
+                padding: 4rem 1.5rem;
+                min-height: auto;
+            }
+            .cta__title {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            .cta__subtitle {
+                font-size: 1rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+            .cta__buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .cta__button {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+            }
+            [data-scroll].is-inview .cta__title,
+            [data-scroll].is-inview .cta__subtitle {
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            [data-scroll].is-inview .cta__buttons,
+            [data-scroll].is-inview .cta__socials {
+                animation: fadeInUp 0.8s ease-out forwards;
+                animation-delay: 0.2s;
+            }
+        }
+        
+
+        @media (max-width: 576px) {
+            .content--cta {
+                background: #111 url('assets/img/gradients/Mobile-View/42.jpg') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+            .content--cta {
+                padding: 3rem 1rem;
+                min-height: 70vh;
+            }
+            .cta__title {
+                font-size: 1.8rem;
+            }
+            .cta__subtitle {
+                font-size: 0.8rem;
+            }
+            .cta__button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+            }
+            .cta__socials {
+                gap: 1rem;
+            }
+            .cta__social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project - MotionArc</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            font-size: 16px;
+            --color-text: #fff;
+            --color-bg: #111;
+            --color-link: #ff00ab;
+            --color-link-hover: #f29464;
+            --color-alt: #e1cc75;
+            --color-pink: #ff00ab;
+            --color-orange: #f29464;
+            --color-purple: #7b67f0;
+            --color-green: #69b490;
+            --color-cyan: #00d3d1;
+        }
+        body {
+            margin: 0;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+        .content + .content, section + section {
+            margin-top: 0 !important;
+        }
+        section {
+            margin-bottom: 0 !important;
+        }
+        .content {
+            padding-top: 90px;
+            padding-bottom: 60px;
+        }
+        .form__wrap, .breadcrumb, .content--hero {
+            margin-bottom: 2.5rem;
+        }
+        p, .form__subtitle {
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+        }
+        @media (max-width: 768px) {
+            .content {
+                padding-top: 50px;
+                padding-bottom: 40px;
+            }
+            section {
+                margin-bottom: 2.2rem;
+            }
+            .form__subtitle {
+                font-size: 0.95rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .content {
+                padding-top: 30px;
+                padding-bottom: 25px;
+            }
+            section {
+                margin-bottom: 1.2rem;
+            }
+            .form__subtitle {
+                font-size: 0.8rem;
+            }
+        }
+        a {
+            text-decoration: none;
+            color: var(--color-link);
+            outline: none;
+        }
+        a:hover, a:focus {
+            color: var(--color-link-hover);
+        }
+        html.has-scroll-smooth {
+            overflow: hidden;
+        }
+        html.has-scroll-dragging {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .has-scroll-smooth body {
+            overflow: hidden;
+        }
+        .has-scroll-smooth [data-scroll-container] {
+            min-height: 100vh;
+        }
+        .c-scrollbar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 11px;
+            height: 100vh;
+            transform-origin: center right;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+        }
+        .c-scrollbar:hover {
+            transform: scaleX(1.45);
+        }
+        .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+            opacity: 1;
+        }
+        .c-scrollbar_thumb {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: black;
+            opacity: 0.5;
+            width: 7px;
+            border-radius: 10px;
+            margin: 2px;
+            cursor: grab;
+        }
+        .has-scroll-dragging .c-scrollbar_thumb {
+            cursor: grabbing;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(17, 17, 17, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .navbar:hover {
+            background-color: rgba(17, 17, 17, 0.3);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            height: 30px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-text);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--color-orange);
+        }
+        .social-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .social-links li {
+            margin-left: 15px;
+        }
+        .social-links a {
+            color: var(--color-text);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--color-cyan);
+            transform: scale(1.1);
+        }
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .menu-btn__burger {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .menu-btn__burger::before,
+        .menu-btn__burger::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .menu-btn__burger::before {
+            transform: translateY(-8px);
+        }
+        .menu-btn__burger::after {
+            transform: translateY(8px);
+        }
+        .menu-btn.open .menu-btn__burger {
+            transform: translateX(-5px);
+            background: transparent;
+        }
+        .menu-btn.open .menu-btn__burger::before {
+            transform: rotate(45deg) translate(5px, -5px);
+        }
+        .menu-btn.open .menu-btn__burger::after {
+            transform: rotate(-45deg) translate(5px, 5px);
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .logo-img {
+                height: 35px;
+            }
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: rgba(17, 17, 17, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-links li {
+                margin: 15px 0;
+            }
+            .social-links {
+                flex-direction: column;
+                position: fixed;
+                top: 50%;
+                right: -100%;
+                transform: translateY(-50%);
+                transition: right 0.5s ease;
+            }
+            .social-links.active {
+                right: 20px;
+            }
+            .social-links li {
+                margin: 10px 0;
+            }
+            .content {
+                padding-top: 60px;
+            }
+        }
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+            .logo-img {
+                height: 30px;
+            }
+            .nav-links {
+                width: 90%;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            .social-links a {
+                font-size: 1rem;
+            }
+        }
+        .content--hero {
+            min-height: 60vh;
+            position: relative;
+            overflow: hidden;
+            background: #111 url('assets/img/gradients/103.webp') center/cover no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        .hero__title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            position: relative;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .hero__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-pink), var(--color-purple));
+            transition: width 0.3s ease;
+        }
+        .hero__title:hover::after {
+            width: 150px;
+        }
+        .hero__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            .content--hero {
+                min-height: 50vh;
+            }
+            .hero__title {
+                font-size: 2.5rem;
+            }
+            .hero__subtitle {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--hero {
+                min-height: 40vh;
+                background: #111 url('assets/img/gradients/Mobile-View/62.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+            .hero__title {
+                font-size: 1.8rem;
+            }
+            .hero__subtitle {
+                font-size: 0.8rem;
+            }
+        }
+        .breadcrumb {
+            padding: 1.5rem 3rem;
+            background: rgba(17, 17, 17, 0.5);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
+        }
+        .breadcrumb__list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .breadcrumb__item a, .breadcrumb__item span {
+            color: var(--color-text);
+            font-size: 1rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb__item a:hover {
+            color: var(--color-cyan);
+        }
+        .breadcrumb__item:not(:last-child)::after {
+            content: '/';
+            color: var(--color-pink);
+            margin-left: 1rem;
+        }
+        @media (max-width: 768px) {
+            .breadcrumb {
+                padding: 1rem 1.5rem;
+            }
+            .breadcrumb__item a, .breadcrumb__item span {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .breadcrumb {
+                padding: 0.8rem 1rem;
+            }
+            .breadcrumb__item a, .breadcrumb__item span {
+                font-size: 0.8rem;
+            }
+            .breadcrumb__item:not(:last-child)::after {
+                margin-left: 0.8rem;
+            }
+        }
+        .content--form {
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/mobile-view/121.webp') center/cover no-repeat;
+            background-attachment: scroll;
+        }
+        @media (min-width: 769px) {
+            .content--form {
+                min-height: 100vh;
+            }
+        }
+        @media (max-width: 768px) {
+            .content--form {
+                padding: 3rem 1.5rem;
+                background: #111 url('assets/img/gradients/mobile-view/121.webp') center/cover no-repeat;
+                background-attachment: scroll;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--form {
+                padding: 2rem 1rem;
+                background: #111 url('assets/img/gradients/Mobile-View/121.webp') center/cover no-repeat;
+                background-attachment: scroll;
+            }
+        }
+        .form__wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .form__wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__title {
+            font-size: 4rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .form__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-pink), var(--color-purple));
+            transition: width 0.3s ease;
+        }
+        .form__title:hover::after {
+            width: 150px;
+        }
+        .form__subtitle {
+            font-size: 1.3rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+        .form__section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .form__section:hover {
+            transform: translateY(-5px);
+        }
+        .form__section.form__project-type {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .form__section.form__project-type::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__section.form__project-type:hover {
+            box-shadow: 0 8px 24px rgba(0, 211, 209, 0.3);
+        }
+        .form__section.form__upload-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .form__section.form__upload-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-green), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__section.form__upload-section:hover {
+            box-shadow: 0 8px 24px rgba(0, 211, 209, 0.3);
+        }
+        .form__section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-green);
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-left: 35px;
+        }
+        .form__section-title::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--color-cyan);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.4rem;
+            animation: pulse 1.5s infinite;
+        }
+        .form__section.form__project-type .form__section-title::before {
+            content: '\f03d';
+        }
+        .form__section.form__upload-section .form__section-title::before {
+            content: '\f093';
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .form__group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+        .form__label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 0.6rem;
+            transition: color 0.3s ease;
+        }
+        .form__label:hover {
+            color: var(--color-orange);
+        }
+        .form__input, .form__textarea, .form__select {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            color: var(--color-text);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            background-clip: padding-box;
+        }
+        .form__input::before, .form__textarea::before, .form__select::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__input:focus, .form__textarea:focus, .form__select:focus {
+            border-color: var(--color-cyan);
+            box-shadow: 0 0 12px rgba(0, 211, 209, 0.4);
+            outline: none;
+            transform: scale(1.02);
+        }
+        .form__checkbox-group, .form__radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+        .form__project-type .form__checkbox-group {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        .form__project-type .form__checkbox-group::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-green), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__checkbox, .form__radio {
+            display: none;
+        }
+        .form__checkbox-label, .form__radio-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background-clip: padding-box;
+        }
+        .form__checkbox-label::before, .form__radio-label::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-green), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__checkbox:checked + .form__checkbox-label {
+            background: linear-gradient(135deg, var(--color-green), var(--color-cyan));
+            border-color: var(--color-green);
+            box-shadow: 0 0 12px rgba(105, 180, 144, 0.4);
+        }
+        .form__radio:checked + .form__radio-label {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-pink));
+            border-color: var(--color-purple);
+            box-shadow: 0 0 12px rgba(123, 103, 240, 0.4);
+        }
+        .form__checkbox-label:hover {
+            border-color: var(--color-orange);
+            transform: translateY(-3px);
+        }
+        .form__radio-label:hover {
+            border-color: var(--color-cyan);
+            transform: translateY(-3px);
+        }
+        .form__checkbox-label::after, .form__radio-label::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-left: 0.6rem;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .form__checkbox:checked + .form__checkbox-label::after,
+        .form__radio:checked + .form__radio-label::after {
+            opacity: 1;
+        }
+        .form__project-type .form__group--other {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        .form__project-type .form__group--other::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-green), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__project-type .form__input {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+        .form__project-type .form__input:focus {
+            border-color: var(--color-cyan);
+            box-shadow: 0 0 12px rgba(0, 211, 209, 0.4);
+        }
+        .form__upload-section .form__upload-wrapper {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 1rem;
+            background-clip: padding-box;
+        }
+        .form__upload-section .form__upload-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__upload-section .form__input[type="file"] {
+            display: none;
+        }
+        .form__upload-section .form__upload-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            color: var(--color-text);
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid transparent;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background-clip: padding-box;
+            text-align: center;
+        }
+        .form__upload-section .form__upload-label::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-green), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__upload-section .form__upload-label:hover {
+            border-color: var(--color-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 0 12px rgba(242, 148, 100, 0.4);
+        }
+        .form__upload-section .form__upload-label::after {
+            content: '\f093';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-left: 0.6rem;
+            font-size: 1rem;
+            color: var(--color-cyan);
+        }
+        .form__upload-section .form__upload-preview {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--color-alt);
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .form__project-type, .form__upload-section {
+                padding: 1rem;
+            }
+            .form__project-type .form__section-title, .form__upload-section .form__section-title {
+                font-size: 1.3rem;
+            }
+            .form__project-type .form__checkbox-group {
+                grid-template-columns: 1fr;
+                padding: 0.8rem;
+            }
+            .form__upload-section .form__upload-label {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .form__project-type, .form__upload-section {
+                padding: 0.8rem;
+            }
+            .form__project-type .form__section-title, .form__upload-section .form__section-title {
+                font-size: 1.1rem;
+            }
+            .form__project-type .form__checkbox-group {
+                padding: 0.6rem;
+            }
+            .form__project-type .form__checkbox-label {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .form__project-type .form__group--other {
+                padding: 0.8rem;
+            }
+            .form__upload-section .form__upload-label {
+                font-size: 0.8rem;
+                padding: 0.6rem;
+            }
+            .form__upload-section .form__upload-preview {
+                font-size: 0.8rem;
+            }
+        }
+        .form__buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+        .form__button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.3rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        .form__button--primary {
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            color: var(--color-text);
+            box-shadow: 0 5px 15px rgba(255, 0, 171, 0.3);
+        }
+        .form__button--secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-green);
+        }
+        .form__button--primary::before, .form__button--secondary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-cyan));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .form__button:hover {
+            transform: translateY(-5px);
+        }
+        .form__button--primary:hover {
+            background: linear-gradient(135deg, var(--color-cyan), var(--color-orange));
+            box-shadow: 0 10px 25px rgba(0, 211, 209, 0.4);
+        }
+        .form__button--secondary:hover {
+            background: rgba(105, 180, 144, 0.1);
+            border-color: var(--color-orange);
+        }
+        .form__button .btn-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .form__button:hover .btn-effect {
+            width: 400px;
+            height: 400px;
+        }
+        @media (max-width: 768px) {
+            .content--form {
+                padding: 3rem 1.5rem;
+            }
+            .form__wrap {
+                padding: 2rem;
+            }
+            .form__title {
+                font-size: 2.5rem;
+            }
+            .form__subtitle {
+                font-size: 1rem;
+            }
+            .form__section-title {
+                font-size: 1.3rem;
+            }
+            .form__checkbox-group, .form__radio-group {
+                grid-template-columns: 1fr;
+            }
+            .form__buttons {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--form {
+                padding: 2rem 1rem;
+            }
+            .form__wrap {
+                padding: 1.5rem;
+            }
+            .form__title {
+                font-size: 1.8rem;
+            }
+            .form__subtitle {
+                font-size: 0.8rem;
+            }
+            .form__section-title {
+                font-size: 1.1rem;
+            }
+            .form__input, .form__textarea, .form__select {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+            .form__checkbox-label, .form__radio-label {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .form__button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+        .content--footer {
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        .frame__copyright {
+            font-size: 1rem;
+            color: var(--color-pink);
+            letter-spacing: 1px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            z-index: 2;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .content--footer {
+                padding: 2rem 1rem;
+            }
+            .frame__copyright {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--footer {
+                padding: 1.5rem 1rem;
+            }
+            .frame__copyright {
+                font-size: 0.8rem;
+            }
+        }
+        .section-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+        .whatsapp-chat-btn {
+            position: fixed;
+            left: 32px;
+            bottom: 32px;
+            right: auto;
+            top: auto;
+            z-index: 9999;
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 8px 32px rgba(0, 211, 209, 0.18);
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.2s, border 0.2s;
+            text-decoration: none;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            font-size: 2rem;
+            padding: 0;
+            border: 2.5px solid transparent;
+            background-clip: padding-box;
+            position: fixed;
+            overflow: visible;
+        }
+        .whatsapp-chat-btn::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            padding: 0.5px;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            z-index: -1;
+            pointer-events: none;
+            transition: background 0.2s;
+        }
+        .whatsapp-chat-btn:hover::before {
+            background: linear-gradient(135deg, var(--color-cyan), var(--color-orange));
+        }
+        .whatsapp-chat-btn:hover {
+            box-shadow: 0 12px 40px rgba(0, 211, 209, 0.28);
+            transform: scale(1.09);
+            background: rgba(255,255,255,0.18);
+        }
+        .whatsapp-chat-btn .fa-whatsapp {
+            font-size: 2.2rem;
+            color: #fff;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+        }
+        .whatsapp-tooltip {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            left: 110%;
+            bottom: 50%;
+            transform: translateY(50%);
+            background: rgba(17,17,17,0.7);
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 8px;
+            font-size: 1rem;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 211, 209, 0.18);
+            transition: opacity 0.2s, border 0.2s;
+            pointer-events: none;
+            backdrop-filter: blur(6px);
+            border: 2px solid;
+            border-image: linear-gradient(135deg, var(--color-pink), var(--color-purple));
+            border-image-slice: 1;
+        }
+        .whatsapp-chat-btn:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            border-image: linear-gradient(135deg, var(--color-green), var(--color-orange), var(--color-cyan));
+            border-image-slice: 1;
+        }
+        @media (max-width: 576px) {
+            .whatsapp-chat-btn {
+                left: 12px;
+                bottom: 12px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+            }
+            .whatsapp-chat-btn::before {
+                border-radius: 50%;
+            }
+            .whatsapp-tooltip {
+                font-size: 0.9rem;
+                border-radius: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="https://wa.me/919999999999" class="whatsapp-chat-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <div data-scroll-container>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/moko-logo.webp" alt="MotionArc Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="My-Resume.html">My Resume</a></li>
+                <li><a href="pre-wedding.html">Pre-Weddings</a></li>
+                <li><a href="wedding.html">Weddings</a></li>
+                <li><a href="Album&Kit.html">Album & Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <ul class="social-links">
+                <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="https://www.github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <div class="menu-btn">
+                <div class="menu-btn__burger"></div>
+            </div>
+        </nav>
+        <section class="content content--hero" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="hero__content">
+                <h1 class="hero__title">Start Your Project Now</h1>
+                <p class="hero__subtitle">Let’s bring your visuals to life — Fill out the form to begin.</p>
+            </div>
+        </section>
+        <section class="breadcrumb" data-scroll-section>
+            <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb__item"><span>Contact</span></li>
+            </ul>
+        </section>
+        <section class="content content--form" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="form__wrap">
+                <h2 class="form__title">Let’s Create Something Extraordinary</h2>
+                <p class="form__subtitle">Your vision deserves a cinematic touch. Fill out the details below to kickstart your project!</p>
+                <form id="project-form">
+                    <div class="form__section">
+                        <h3 class="form__section-title">Basic Info</h3>
+                        <div class="form__group">
+                            <label for="full-name" class="form__label">Full Name</label>
+                            <input type="text" id="full-name" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="studio-name" class="form__label">Studio / Brand Name</label>
+                            <input type="text" id="studio-name" class="form__input">
+                        </div>
+                        <div class="form__group">
+                            <label for="email" class="form__label">Email Address</label>
+                            <input type="email" id="email" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="phone" class="form__label">Phone Number</label>
+                            <input type="tel" id="phone" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="city-country" class="form__label">City & Country</label>
+                            <input type="text" id="city-country" class="form__input" required>
+                        </div>
+                    </div>
+                    <div class="form__section form__project-type">
+                        <h3 class="form__section-title">Project Type</h3>
+                        <div class="form__checkbox-group">
+                            <input type="checkbox" id="project-pre-wedding" class="form__checkbox" name="project-type" value="pre-wedding">
+                            <label for="project-pre-wedding" class="form__checkbox-label">Pre-Wedding</label>
+                            <input type="checkbox" id="project-wedding-day" class="form__checkbox" name="project-type" value="wedding-day">
+                            <label for="project-wedding-day" class="form__checkbox-label">Wedding Day</label>
+                            <input type="checkbox" id="project-engagement" class="form__checkbox" name="project-type" value="engagement">
+                            <label for="project-engagement" class="form__checkbox-label">Engagement / Haldi / Mehendi / Sangeet</label>
+                            <input type="checkbox" id="project-baby-shoot" class="form__checkbox" name="project-type" value="baby-shoot">
+                            <label for="project-baby-shoot" class="form__checkbox-label">Baby Shoot / Maternity / Other</label>
+                            <input type="checkbox" id="project-commercial" class="form__checkbox" name="project-type" value="commercial">
+                            <label for="project-commercial" class="form__checkbox-label">Commercial or Brand Shoot</label>
+                            <input type="checkbox" id="project-other" class="form__checkbox" name="project-type" value="other">
+                            <label for="project-other" class="form__checkbox-label">Other</label>
+                            <div class="form__group form__group--other" id="other-project-type" style="display: none;">
+                                <label for="other-project-desc" class="form__label">Describe Other Project</label>
+                                <input type="text" id="other-project-desc" class="form__input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__section">
+                        <h3 class="form__section-title">Deliverables Required</h3>
+                        <div class="form__checkbox-group">
+                            <input type="checkbox" id="teaser" class="form__checkbox">
+                            <label for="teaser" class="form__checkbox-label">1-2 Min Teaser</label>
+                            <input type="checkbox" id="trailer" class="form__checkbox">
+                            <label for="trailer" class="form__checkbox-label">2-3 Min Trailer</label>
+                            <input type="checkbox" id="short-film" class="form__checkbox">
+                            <label for="short-film" class="form__checkbox-label">5-7 Min Short Film (Storytelling)</label>
+                            <input type="checkbox" id="documentary" class="form__checkbox">
+                            <label for="documentary" class="form__checkbox-label">Full Documentary (30–60 Min)</label>
+                            <input type="checkbox" id="reels" class="form__checkbox">
+                            <label for="reels" class="form__checkbox-label">Reels / Shorts</label>
+                            <input type="checkbox" id="posts" class="form__checkbox">
+                            <label for="posts" class="form__checkbox-label">Instagram Posts / Carousels / Stories</label>
+                            <input type="checkbox" id="album" class="form__checkbox">
+                            <label for="album" class="form__checkbox-label">Album Design</label>
+                            <input type="checkbox" id="color-grading" class="form__checkbox">
+                            <label for="color-grading" class="form__checkbox-label">Only Color Grading</label>
+                            <input type="checkbox" id="sound-mixing" class="form__checkbox">
+                            <label for="sound-mixing" class="form__checkbox-label">Only Sound Mixing / Voice Sync</label>
+                            <input type="checkbox" id="logo-animation" class="form__checkbox">
+                            <label for="logo-animation" class="form__checkbox-label">Logo Animation</label>
+                            <input type="checkbox" id="other-deliverable" class="form__checkbox">
+                            <label for="other-deliverable" class="form__checkbox-label">Other</label>
+                            <div class="form__group" id="other-deliverable-desc" style="display: none;">
+                                <label for="other-deliverable-text" class="form__label">Specify Other Deliverable</label>
+                                <input type="text" id="other-deliverable-text" class="form__input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__section">
+                        <h3 class="form__section-title">Editing Style Preference</h3>
+                        <div class="form__radio-group">
+                            <input type="radio" id="fast-cut" class="form__radio" name="editing-style" value="fast-cut">
+                            <label for="fast-cut" class="form__radio-label">Fast Cut Cinematic</label>
+                            <input type="radio" id="smooth-story" class="form__radio" name="editing-style" value="smooth-story">
+                            <label for="smooth-story" class="form__radio-label">Smooth Emotional Storytelling</label>
+                            <input type="radio" id="documentary-style" class="form__radio" name="editing-style" value="documentary-style">
+                            <label for="documentary-style" class="form__radio-label">Documentary-Style</label>
+                            <input type="radio" id="trendy-social" class="form__radio" name="editing-style" value="trendy-social">
+                            <label for="trendy-social" class="form__radio-label">Trendy Social Media Aesthetic</label>
+                            <input type="radio" id="editor-choice" class="form__radio" name="editing-style" value="editor-choice">
+                            <label for="editor-choice" class="form__radio-label">Editor’s Creative Choice</label>
+                        </div>
+                        <div class="form__group">
+                            <label for="reference-link" class="form__label">Reference Link (Optional)</label>
+                            <input type="url" id="reference-link" class="form__input">
+                        </div>
+                    </div>
+                    <div class="form__section">
+                        <h3 class="form__section-title">Raw Footage Link</h3>
+                        <div class="form__group">
+                            <label for="footage-link" class="form__label">Google Drive / Dropbox / WeTransfer Link</label>
+                            <input type="url" id="footage-link" class="form__input">
+                        </div>
+                        <div class="form__group">
+                            <label for="footage-password" class="form__label">Password (Optional)</label>
+                            <input type="text" id="footage-password" class="form__input">
+                        </div>
+                    </div>
+                    <div class="form__section">
+                        <h3 class="form__section-title">Footage Details</h3>
+                        <div class="form__group">
+                            <label for="camera-setups" class="form__label">No. of Camera Setups Used</label>
+                            <input type="text" id="camera-setups" class="form__input">
+                        </div>
+                        <div class="form__group">
+                            <label for="footage-duration" class="form__label">Duration of Total Raw Footage (approx. in hours)</label>
+                            <input type="number" id="footage-duration" class="form__input">
+                        </div>
+                        <div class="form__group">
+                            <label for="audio-recorded" class="form__label">Is Audio / Voice Recorded Separately?</label>
+                            <select id="audio-recorded" class="form__select">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="form__group">
+                            <label for="soundtrack-preference" class="form__label">Soundtrack Preference</label>
+                            <input type="text" id="soundtrack-preference" class="form__input" placeholder="Upload or link / Let editor decide">
+                        </div>
+                        <div class="form__group">
+                            <label for="must-use-clips" class="form__label">Any Must-Use Clips? (Optional)</label>
+                            <textarea id="must-use-clips" class="form__textarea" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="form__section">
+                        <h3 class="form__section-title">Brand Kit (Optional)</h3>
+                        <div class="form__group">
+                            <label for="logo-upload" class="form__label">Logo Upload</label>
+                            <input type="file" id="logo-upload" class="form__input" accept="image/*">
+                        </div>
+                        <div class="form__group">
+                            <label for="font-color" class="form__label">Font or Color Preferences</label>
+                            <textarea id="font-color" class="form__textarea" rows="3"></textarea>
+                        </div>
+                        <div class="form__group">
+                            <label for="brand-intro" class="form__label">Brand Intro/Outro (Upload or Link)</label>
+                            <input type="text" id="brand-intro" class="form__input">
+                        </div>
+                    </div>
+                    <div class="form__section">
+                        <h3 class="form__section-title">Delivery Requirements</h3>
+                        <div class="form__group">
+                            <label class="form__label">Final Output Format</label>
+                            <div class="form__checkbox-group">
+                                <input type="checkbox" id="format-instagram" class="form__checkbox">
+                                <label for="format-instagram" class="form__checkbox-label">Instagram (Reel/Post)</label>
+                                <input type="checkbox" id="format-youtube" class="form__checkbox">
+                                <label for="format-youtube" class="form__checkbox-label">YouTube (Landscape 4K/1080p)</label>
+                                <input type="checkbox" id="format-whatsapp" class="form__checkbox">
+                                <label for="format-whatsapp" class="form__checkbox-label">WhatsApp (Mobile-friendly)</label>
+                            </div>
+                        </div>
+                        <div class="form__group">
+                            <label for="deadline" class="form__label">Deadlines (Preferred Delivery Timeline)</label>
+                            <input type="text" id="deadline" class="form__input">
+                        </div>
+                        <div class="form__group">
+                            <label for="revision-rounds" class="form__label">Revision Rounds Required</label>
+                            <select id="revision-rounds" class="form__select">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form__section">
+                        <h3 class="form__section-title">Additional Notes</h3>
+                        <div class="form__group">
+                            <label for="additional-notes" class="form__label">Mention any specific vision, emotion, client expectations, or technical requests</label>
+                            <textarea id="additional-notes" class="form__textarea" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form__section form__upload-section">
+                        <h3 class="form__section-title">Upload Files</h3>
+                        <div class="form__group">
+                            <div class="form__upload-wrapper">
+                                <input type="file" id="file-upload" class="form__input" accept="image/*,video/*,.pdf" multiple>
+                                <label for="file-upload" class="form__upload-label">Choose Files to Upload</label>
+                            </div>
+                            <div class="form__upload-preview" id="file-upload-preview">No files selected</div>
+                        </div>
+                    </div>
+                    <div class="form__buttons">
+                        <button type="submit" class="form__button form__button--primary">
+                            Submit Project <span class="btn-effect"></span>
+                        </button>
+                        <button type="button" class="form__button form__button--secondary" onclick="saveDraft()">
+                            Save as Draft <span class="btn-effect"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="content content--footer" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="frame--footer">
+                <p class="frame__copyright">© 2025 MotionArc. All rights reserved.</p>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scroll = new LocomotiveScroll({
+                el: document.querySelector('[data-scroll-container]'),
+                smooth: true,
+                multiplier: 1.2,
+                lerp: 0.08,
+                smartphone: {
+                    smooth: true,
+                    multiplier: 1.5,
+                    lerp: 0.1
+                },
+                tablet: {
+                    smooth: true,
+                    multiplier: 1.3,
+                    lerp: 0.09
+                }
+            });
+
+            // Refresh scroll instance after a short delay to ensure DOM is fully loaded
+            setTimeout(() => {
+                scroll.update();
+            }, 100);
+
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                navLinks.classList.toggle('active');
+                scroll.update(); // Update scroll after menu toggle
+            });
+
+            const projectOtherCheckbox = document.querySelector('#project-other');
+            const otherProjectType = document.querySelector('#other-project-type');
+            projectOtherCheckbox.addEventListener('change', () => {
+                otherProjectType.style.display = projectOtherCheckbox.checked ? 'block' : 'none';
+                scroll.update(); // Update scroll after showing/hiding other project input
+            });
+
+            const otherDeliverableCheckbox = document.querySelector('#other-deliverable');
+            const otherDeliverableDesc = document.querySelector('#other-deliverable-desc');
+            otherDeliverableCheckbox.addEventListener('change', () => {
+                otherDeliverableDesc.style.display = otherDeliverableCheckbox.checked ? 'block' : 'none';
+                scroll.update(); // Update scroll after showing/hiding other deliverable input
+            });
+
+            const fileUploadInput = document.querySelector('#file-upload');
+            const fileUploadPreview = document.querySelector('#file-upload-preview');
+            fileUploadInput.addEventListener('change', () => {
+                const files = fileUploadInput.files;
+                if (files.length > 0) {
+                    const fileNames = Array.from(files).map(file => file.name).join(', ');
+                    fileUploadPreview.textContent = `Selected: ${fileNames}`;
+                } else {
+                    fileUploadPreview.textContent = 'No files selected';
+                }
+                scroll.update(); // Update scroll after file selection
+            });
+
+            function saveDraft() {
+                alert('Draft saved! (This is a placeholder for actual save functionality)');
+            }
+        });
+    </script>
+</body>
+</html>

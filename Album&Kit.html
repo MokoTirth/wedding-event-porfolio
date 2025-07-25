@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - MotionArc</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            font-size: 16px;
+            --color-text: #fff;
+            --color-bg: #111;
+            --color-link: #27a776;
+            --color-link-hover: #fff;
+            --color-alt: #e1cc75;
+        }
+        @media (max-width: 576px) {
+            .content--events-hero {
+                background-image: url('assets/img/gradients/16-mobile.webp');
+            }
+            .content--photo-gallery.album-gallery {
+                background-image: url('assets/img/gradients/7-mobile.webp');
+            }
+            .content--photo-gallery.carousel-gallery {
+                background-image: url('assets/img/gradients/8-mobile.webp');
+            }
+            .content--photo-gallery.normal-posts-gallery {
+                background-image: url('assets/img/gradients/7-mobile.webp');
+            }
+            .content--photo-gallery.stories-gallery {
+                background-image: url('assets/img/gradients/8-mobile.webp');
+            }
+            .content--about-events {
+                background-image: url('assets/img/gradients/1-mobile.webp');
+            }
+            .content--cta {
+                background-image: url('assets/img/gradients/11-mobile.webp');
+            }
+            .content--footer {
+                background-image: url('assets/img/gradients/2-mobile.webp');
+            }
+        }
+        body {
+            margin: 0;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a {
+            text-decoration: none;
+            color: var(--color-link);
+            outline: none;
+        }
+        a:hover, a:focus {
+            color: var(--color-link-hover);
+        }
+        html.has-scroll-smooth {
+            overflow: hidden;
+        }
+        html.has-scroll-dragging {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .has-scroll-smooth body {
+            overflow: hidden;
+        }
+        .has-scroll-smooth [data-scroll-container] {
+            min-height: 100vh;
+        }
+        .c-scrollbar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 11px;
+            height: 100vh;
+            transform-origin: center right;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+        }
+        .c-scrollbar:hover {
+            transform: scaleX(1.45);
+        }
+        .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+            opacity: 1;
+        }
+        .c-scrollbar_thumb {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: black;
+            opacity: 0.5;
+            width: 7px;
+            border-radius: 10px;
+            margin: 2px;
+            cursor: grab;
+        }
+        .has-scroll-dragging .c-scrollbar_thumb {
+            cursor: grabbing;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(17, 17, 17, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .navbar:hover {
+            background-color: rgba(17, 17, 17, 0.3);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-img {
+            height: 30px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-text);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--color-alt);
+        }
+        .social-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .social-links li {
+            margin-left: 15px;
+        }
+        .social-links a {
+            color: var(--color-text);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--color-alt);
+            transform: scale(1.1);
+        }
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .menu-btn__burger {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .menu-btn__burger::before,
+        .menu-btn__burger::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .menu-btn__burger::before {
+            transform: translateY(-8px);
+        }
+        .menu-btn__burger::after {
+            transform: translateY(8px);
+        }
+        .menu-btn.open .menu-btn__burger {
+            transform: translateX(-5px);
+            background: transparent;
+        }
+        .menu-btn.open .menu-btn__burger::before {
+            transform: rotate(45deg) translate(5px, -5px);
+        }
+        .menu-btn.open .menu-btn__burger::after {
+            transform: rotate(-45deg) translate(5px, 5px);
+        }
+        .content {
+            padding-top: 80px;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .logo-img {
+                height: 35px;
+            }
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: rgba(17, 17, 17, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-links li {
+                margin: 15px 0;
+            }
+            .social-links {
+                flex-direction: column;
+                position: fixed;
+                top: 50%;
+                right: -100%;
+                transform: translateY(-50%);
+                transition: right 0.5s ease;
+            }
+            .social-links.active {
+                right: 20px;
+            }
+            .social-links li {
+                margin: 10px 0;
+            }
+            .content {
+                padding-top: 60px;
+            }
+        }
+        .content--events-hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #111 url('assets/img/gradients/104.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .events-hero__wrap {
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 3rem;
+            z-index: 2;
+            position: relative;
+            text-align: center;
+        }
+        .events-hero__title {
+            font-size: 6rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            animation: slideInLeft 1s ease-out;
+        }
+        .events-hero__subtitle {
+            font-size: 1.8rem;
+            color: var(--color-alt);
+            font-family: neuzeit-grotesk, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            animation: fadeIn 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+        .events-hero__signature {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .events-hero__signature-line {
+            width: 100px;
+            height: 2px;
+            background: var(--color-link);
+            transition: width 0.3s ease;
+        }
+        .events-hero__wrap:hover .events-hero__signature-line {
+            width: 150px;
+        }
+        .events-hero__socials a {
+            font-size: 1.5rem;
+            color: var(--color-text);
+            margin: 0 0.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .events-hero__socials a:hover {
+            color: var(--color-alt);
+            transform: scale(1.2);
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .events-hero__title {
+                font-size: 3.5rem;
+            }
+            .events-hero__subtitle {
+                font-size: 1.2rem;
+                max-width: 100%;
+            }
+            .events-hero__wrap {
+                padding: 0 1.5rem;
+            }
+        }
+        .breadcrumb {
+            padding: 1.5rem 3rem;
+            background: rgba(17, 17, 17, 0.5);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
+        }
+        .breadcrumb__list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .breadcrumb__item a, .breadcrumb__item span {
+            color: var(--color-text);
+            font-size: 1rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb__item a:hover {
+            color: var(--color-alt);
+        }
+        .breadcrumb__item:not(:last-child)::after {
+            content: '/';
+            color: var(--color-link);
+            margin-left: 1rem;
+        }
+        @media (max-width: 768px) {
+            .breadcrumb {
+                padding: 1rem 1.5rem;
+            }
+            .breadcrumb__item a, .breadcrumb__item span {
+                font-size: 0.9rem;
+            }
+        }
+        .content--photo-gallery {
+            min-height: 100vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/108.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .photo-gallery__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .photo-gallery__header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .photo-gallery__title {
+            font-size: 4rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        .photo-gallery__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--color-link);
+            transition: width 0.4s ease;
+        }
+        .photo-gallery__title:hover::after {
+            width: 120px;
+        }
+        .photo-gallery__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+        .photo-gallery__item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+        .photo-gallery__item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        .photo-gallery__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+        }
+        .photo-gallery__title-text {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--color-text);
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            opacity: 0.9;
+        }
+        .photo-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-modal.active {
+            display: flex;
+        }
+        .photo-modal__content {
+            position: relative;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-modal__img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #222;
+        }
+        .photo-modal__close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2rem;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .photo-modal__close:hover {
+            color: var(--color-alt);
+        }
+        .album-gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .album-gallery .photo-gallery__item {
+            aspect-ratio: 5400 / 1350;
+        }
+        .album-gallery .photo-modal__content {
+            aspect-ratio: 5400 / 1350;
+        }
+        .carousel-gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .carousel-gallery .photo-gallery__item {
+            aspect-ratio: 5400 / 1350;
+        }
+        .carousel-gallery .photo-modal__content {
+            aspect-ratio: 5400 / 1350;
+        }
+        .normal-posts-gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .normal-posts-gallery .photo-gallery__item {
+            aspect-ratio: 1080 / 1350;
+        }
+        .normal-posts-gallery .photo-modal__content {
+            aspect-ratio: 1080 / 1350;
+        }
+        .stories-gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stories-gallery .photo-gallery__item {
+            aspect-ratio: 1080 / 1920;
+        }
+        .stories-gallery .photo-modal__content {
+            aspect-ratio: 1080 / 1920;
+        }
+        @media (max-width: 768px) {
+            .photo-gallery__title {
+                font-size: 2.5rem;
+            }
+            .photo-gallery__subtitle {
+                font-size: 1rem;
+            }
+            .photo-gallery__title-text {
+                font-size: 0.9rem;
+            }
+            .album-gallery__grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .carousel-gallery__grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .normal-posts-gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .stories-gallery__grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--photo-gallery {
+                padding: 3rem 1.5rem;
+            }
+            .photo-gallery__title {
+                font-size: 2rem;
+            }
+            .album-gallery__grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .carousel-gallery__grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .normal-posts-gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            .stories-gallery__grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+        }
+
+         .content--deliverables {
+            min-height: 80vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/102.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .deliverables__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .deliverables__title {
+            font-size: 4rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-align: center;
+        }
+        .deliverables__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--color-link);
+            transition: width 0.3s ease;
+        }
+        .deliverables__title:hover::after {
+            width: 120px;
+        }
+        .deliverables__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        .deliverables__table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .deliverables__table th, .deliverables__table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .deliverables__table th {
+            background: #ff00ab;
+            color: var(--color-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .deliverables__table td {
+            font-size: 1rem;
+            color: var(--color-text);
+            opacity: 0.9;
+            white-space: normal;
+        }
+        .deliverables__table tr:hover td {
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .content--deliverables {
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+            .deliverables__title {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+            .deliverables__subtitle {
+                font-size: 0.9rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+            .deliverables__table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.08);
+            }
+            .deliverables__table th, .deliverables__table td {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+                min-width: 120px;
+                white-space: normal;
+            }
+            [data-scroll].is-inview .deliverables__title,
+            [data-scroll].is-inview .deliverables__subtitle {
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            [data-scroll].is-inview .deliverables__table tr {
+                animation: fadeInUp 0.8s ease-out forwards;
+                animation-delay: 0.2s;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--deliverables {
+                padding: 2rem 1rem;
+            }
+            .deliverables__title {
+                font-size: 1.8rem;
+            }
+            .deliverables__subtitle {
+                font-size: 0.8rem;
+            }
+            .deliverables__table th, .deliverables__table td {
+                font-size: 0.8rem;
+                padding: 0.6rem;
+                min-width: 100px;
+            }
+        }
+        .content--features {
+            min-height: 80vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/62.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .features__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .features__title {
+            font-size: 4rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-align: center;
+        }
+        .features__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #8270f7;
+            transition: width 0.3s ease;
+        }
+        .features__title:hover::after {
+            width: 120px;
+        }
+        .features__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        .features__table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .features__table th, .features__table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .features__table th {
+            background: #8270f7;
+            color: var(--color-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .features__table td {
+            font-size: 1rem;
+            color: var(--color-text);
+            opacity: 0.9;
+            white-space: normal;
+        }
+        .features__table tr:hover td {
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .content--features {
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+            .features__title {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+            .features__subtitle {
+                font-size: 0.9rem;
+                max-width: 100%;
+                line-height: 1.5;
+            }
+            .features__table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.08);
+            }
+            .features__table th, .features__table td {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+                min-width: 120px;
+                white-space: normal;
+            }
+            [data-scroll].is-inview .features__title,
+            [data-scroll].is-inview .features__subtitle {
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            [data-scroll].is-inview .features__table tr {
+                animation: fadeInUp 0.8s ease-out forwards;
+                animation-delay: 0.2s;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--features {
+                padding: 2rem 1rem;
+            }
+            .features__title {
+                font-size: 1.8rem;
+            }
+            .features__subtitle {
+                font-size: 0.8rem;
+            }
+            .features__table th, .features__table td {
+                font-size: 0.8rem;
+                padding: 0.6rem;
+                min-width: 100px;
+            }
+        }
+
+        .content--about-events {
+            min-height: 80vh;
+            padding: 4rem 3rem;
+            position: relative;
+            background: #111 url('assets/img/gradients/101.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .about-events__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .about-events__title {
+            font-size: 4rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-align: center;
+        }
+        .about-events__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #00d3d1;
+            transition: width 0.3s ease;
+        }
+        .about-events__title:hover::after {
+            width: 120px;
+        }
+        .about-events__subtitle {
+            font-size: 1.2rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        .about-events__text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            padding-left: 30px;
+            position: relative;
+        }
+        .about-events__text::before {
+            content: '\f004';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 1.2rem;
+        }
+        .about-events__keypoints {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        .about-events__keypoint {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 30px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+        .about-events__keypoint::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .about-events__title {
+                font-size: 2.5rem;
+            }
+            .about-events__subtitle {
+                font-size: 1rem;
+            }
+            .about-events__text, .about-events__keypoint {
+                font-size: 1rem;
+                padding-left: 25px;
+            }
+            .about-events__text::before, .about-events__keypoint::before {
+                font-size: 1rem;
+            }
+        }
+        .content--cta {
+            min-height: 100vh;
+            padding: 6rem 3rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111 url('assets/img/gradients/11.webp') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .cta__wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .cta__title {
+            font-size: 5rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .cta__title span {
+            color: var(--color-link);
+            position: relative;
+            display: inline-block;
+        }
+        .cta__title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(39, 167, 118, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        .cta__title:hover span::after {
+            height: 15px;
+        }
+        .cta__subtitle {
+            font-size: 1.5rem;
+            color: var(--color-alt);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+        .cta__buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .cta__button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta__button--primary {
+            background: var(--color-link);
+            color: var(--color-text);
+            box-shadow: 0 5px 15px rgba(39, 167, 118, 0.3);
+        }
+        .cta__button--secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-link);
+        }
+        .cta__button i {
+            margin-right: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        .cta__button:hover {
+            transform: translateY(-5px);
+        }
+        .cta__button--primary:hover {
+            background: var(--color-link-hover);
+            box-shadow: 0 10px 25px rgba(39, 167, 118, 0.4);
+        }
+        .cta__button--secondary:hover {
+            background: rgba(39, 167, 118, 0.1);
+        }
+        .cta__button:hover i {
+            transform: rotate(15deg);
+        }
+        .cta__button .btn-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .cta__button:hover .btn-effect {
+            width: 300px;
+            height: 300px;
+        }
+        .cta__socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .cta__social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+        .cta__social-link:hover {
+            background: var(--color-link);
+            transform: translateY(-5px) scale(1.1);
+        }
+        @media (max-width: 992px) {
+            .cta__title {
+                font-size: 3.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .cta__title {
+                font-size: 2.5rem;
+            }
+            .cta__subtitle {
+                font-size: 1rem;
+            }
+            .cta__buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @media (max-width: 576px) {
+            .content--cta {
+                padding: 4rem 1.5rem;
+            }
+            .cta__title {
+                font-size: 2rem;
+            }
+        }
+        .content--footer {
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        .frame__copyright {
+            font-size: 1rem;
+            color: var(--color-link);
+            letter-spacing: 1px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            z-index: 2;
+            position: relative;
+        }
+        .section-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+
+         /* Price Tag Styles */
+    .price-tag-wrap {
+        text-align: center;
+        margin: 2rem 0 3rem 0;
+        position: relative;
+        z-index: 3;
+    }
+    .price-tag--modern {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #fff;
+        background: linear-gradient(100deg, #ff00ab 0%, #00d3d1 100%); /* Green to Blue gradient */
+        padding: 1.2rem 3.5rem 1.2rem 3.5rem;
+        border-radius: 60px;
+        box-shadow: 0 8px 32px rgba(39,167,118,0.25), 0 2px 10px rgba(39,167,118,0.15);
+        letter-spacing: 2px;
+        position: relative;
+        border: 4px solid #fff;
+        text-shadow: 0 2px 8px rgba(39,167,118,0.25);
+        transition: transform 0.2s, box-shadow 0.2s;
+        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        overflow: visible;
+    }
+    .price-tag__icon {
+        font-size: 2.2rem;
+        margin-right: 1.2rem;
+        color: #ffe066;
+        filter: drop-shadow(0 2px 8px rgba(39,167,118,0.15));
+        animation: popIcon 1.2s cubic-bezier(.68,-0.55,.27,1.55) infinite alternate;
+    }
+    @keyframes popIcon {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.15) rotate(-8deg); }
+    }
+    .price-tag__text {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #fff;
+        margin-right: 1.2rem;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 8px rgba(39,167,118,0.25);
+    }
+    .price-tag__ribbon {
+        position: absolute;
+        top: -18px;
+        right: -30px;
+        background: linear-gradient(90deg, #ffe066 0%, #e1cc75 100%);
+        color: #222;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
+        box-shadow: 0 2px 8px rgba(39,167,118,0.15);
+        letter-spacing: 1px;
+        z-index: 2;
+        text-transform: uppercase;
+        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        border: 2px solid #fff;
+        animation: ribbonPop 1.2s cubic-bezier(.68,-0.55,.27,1.55) infinite alternate;
+    }
+    .price-tag__ribbon--premium {
+        background: linear-gradient(90deg, #e1cc75 0%, #ffe066 100%);
+        color: #222;
+    }
+    @keyframes ribbonPop {
+        0% { transform: scale(1) rotate(-2deg); }
+        100% { transform: scale(1.08) rotate(4deg); }
+    }
+    .price-tag--modern:hover {
+        transform: scale(1.07) rotate(-2deg);
+        box-shadow: 0 12px 40px rgba(39,167,118,0.35), 0 4px 20px rgba(39,167,118,0.25);
+    }
+    @media (max-width: 576px) {
+        .price-tag--modern {
+            font-size: 1.2rem;
+            padding: 0.7rem 1.2rem 0.7rem 1.2rem;
+            border-radius: 30px;
+        }
+        .price-tag__icon {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+        .price-tag__text {
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        .price-tag__ribbon {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.7rem;
+            top: -10px;
+            right: -10px;
+        }
+    }
+/* Mobile-specific background images for each section */
+        @media (max-width: 576px) {
+            .content--wedding-hero {
+                background: #111 url('assets/img/gradients/Mobile-View/1.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+            .content--video-gallery {
+                background: #111 url('assets/img/gradients/Mobile-View/1.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+            .content--deliverables {
+                background: #111 url('assets/img/gradients/Mobile-View/65.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+            .content--features {
+                background: #111 url('assets/img/gradients/Mobile-View/67.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+            .content--about-prewedding {
+                background: #111 url('assets/img/gradients/Mobile-View/71.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+            .content--cta {
+                background: #111 url('assets/img/gradients/Mobile-View/6.webp') center/cover no-repeat !important;
+                background-attachment: scroll !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/919999999999" class="whatsapp-chat-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <div data-scroll-container>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/moko-logo.png" alt="MotionArc Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="My-Resume.html">My Resume</a></li>
+                <li><a href="pre-wedding.html">Pre-Weddings</a></li>
+                <li><a href="wedding.html">Weddings</a></li>
+                <li><a href="Album&Kit.html">Album & Kit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <ul class="social-links">
+                <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="https://www.github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <div class="menu-btn">
+                <div class="menu-btn__burger"></div>
+            </div>
+        </nav>
+        <section class="content content--events-hero" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="events-hero__wrap" data-scroll data-scroll-speed="2">
+                <h1 class="events-hero__title">Memorable Events</h1>
+                <p class="events-hero__subtitle">Capturing the energy and elegance of your corporate and engagement events with cinematic precision.</p>
+                <div class="events-hero__signature">
+                    <div class="events-hero__signature-line"></div>
+                    <div class="events-hero__socials">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="breadcrumb" data-scroll-section>
+            <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb__item"><span>Events</span></li>
+            </ul>
+        </section>
+        <section class="content content--photo-gallery album-gallery" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="photo-gallery__wrap">
+                <div class="photo-gallery__header" data-scroll data-scroll-speed="2">
+                    <h2 class="photo-gallery__title">Album Design Gallery</h2>
+                    <p class="photo-gallery__subtitle">Premium horizontal album designs, perfect for showcasing your best work in a wide format.</p>
+                </div>
+                <div class="album-gallery__grid" data-scroll data-scroll-speed="1">
+                    <div class="photo-gallery__item" data-photo="assets/img/thumbnails/album-1.webp">
+                        <img src="assets/img/thumbnails/album-1.webp" alt="Album Design 1">
+                        <p class="photo-gallery__title-text">Album Design 1</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/thumbnails/album-2.webp">
+                        <img src="assets/img/thumbnails/album-2.webp" alt="Album Design 2">
+                        <p class="photo-gallery__title-text">Album Design 2</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/thumbnails/album-3.webp">
+                        <img src="assets/img/thumbnails/album-3.webp" alt="Album Design 3">
+                        <p class="photo-gallery__title-text">Album Design 3</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/thumbnails/album-4.webp">
+                        <img src="assets/img/thumbnails/album-4.webp" alt="Album Design 4">
+                        <p class="photo-gallery__title-text">Album Design 4</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/thumbnails/album-5.webp">
+                        <img src="assets/img/thumbnails/album-5.webp" alt="Album Design 5">
+                        <p class="photo-gallery__title-text">Album Design 5</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/thumbnails/album-6.webp">
+                        <img src="assets/img/thumbnails/album-6.webp" alt="Album Design 6">
+                        <p class="photo-gallery__title-text">Album Design 6</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content content--photo-gallery carousel-gallery" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="photo-gallery__wrap">
+                <div class="photo-gallery__header" data-scroll data-scroll-speed="2">
+                    <h2 class="photo-gallery__title">Instagram Carousel Posts</h2>
+                    <p class="photo-gallery__subtitle">Horizontal carousel posts for Instagram, designed to maximize visual impact and engagement.</p>
+                </div>
+                <div class="carousel-gallery__grid" data-scroll data-scroll-speed="1">
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-2.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-2.webp" alt="Carousel Post 1">
+                        <p class="photo-gallery__title-text">Carousel Post 1</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-5.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-5.webp" alt="Carousel Post 2">
+                        <p class="photo-gallery__title-text">Carousel Post 2</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-4.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-4.webp" alt="Carousel Post 3">
+                        <p class="photo-gallery__title-text">Carousel Post 3</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-3.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-3.webp" alt="Carousel Post 4">
+                        <p class="photo-gallery__title-text">Carousel Post 4</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-7.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-7.webp" alt="Carousel Post 5">
+                        <p class="photo-gallery__title-text">Carousel Post 5</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-1.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-1.webp" alt="Carousel Post 6">
+                        <p class="photo-gallery__title-text">Carousel Post 6</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-8.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-8.webp" alt="Carousel Post 7">
+                        <p class="photo-gallery__title-text">Carousel Post 7</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Carousel/c-9.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Carousel/c-9.webp" alt="Carousel Post 8">
+                        <p class="photo-gallery__title-text">Carousel Post 8</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content content--photo-gallery normal-posts-gallery" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="photo-gallery__wrap">
+                <div class="photo-gallery__header" data-scroll data-scroll-speed="2">
+                    <h2 class="photo-gallery__title">Instagram Normal Posts</h2>
+                    <p class="photo-gallery__subtitle">Portrait-style Instagram posts, arranged in a 4-column grid for a modern look.</p>
+                </div>
+                <div class="normal-posts-gallery__grid" data-scroll data-scroll-speed="1">
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p7.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p7.webp" alt="Normal Post 1">
+                        <p class="photo-gallery__title-text">Normal Post 1</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p5.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p5.webp" alt="Normal Post 2">
+                        <p class="photo-gallery__title-text">Normal Post 2</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p17.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p17.webp" alt="Normal Post 3">
+                        <p class="photo-gallery__title-text">Normal Post 3</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p19.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p19.webp" alt="Normal Post 4">
+                        <p class="photo-gallery__title-text">Normal Post 4</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p21.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p21.webp" alt="Normal Post 5">
+                        <p class="photo-gallery__title-text">Normal Post 5</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p22.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p22.webp" alt="Normal Post 6">
+                        <p class="photo-gallery__title-text">Normal Post 6</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p2.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p2.webp" alt="Normal Post 7">
+                        <p class="photo-gallery__title-text">Normal Post 7</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p15.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p15.webp" alt="Normal Post 8">
+                        <p class="photo-gallery__title-text">Normal Post 8</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p4.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p4.webp" alt="Normal Post 9">
+                        <p class="photo-gallery__title-text">Normal Post 9</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p23.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p23.webp" alt="Normal Post 10">
+                        <p class="photo-gallery__title-text">Normal Post 10</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p6.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p6.webp" alt="Normal Post 11">
+                        <p class="photo-gallery__title-text">Normal Post 11</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p13.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p13.webp" alt="Normal Post 12">
+                        <p class="photo-gallery__title-text">Normal Post 12</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p16.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p16.webp" alt="Normal Post 13">
+                        <p class="photo-gallery__title-text">Normal Post 13</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p23.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p23.webp" alt="Normal Post 14">
+                        <p class="photo-gallery__title-text">Normal Post 14</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p18.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p18.webp" alt="Normal Post 15">
+                        <p class="photo-gallery__title-text">Normal Post 15</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p20.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p20.webp" alt="Normal Post 16">
+                        <p class="photo-gallery__title-text">Normal Post 16</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p8.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p8.webp" alt="Normal Post 16">
+                        <p class="photo-gallery__title-text">Normal Post </p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p9.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p9.webp" alt="Normal Post 16">
+                        <p class="photo-gallery__title-text">Normal Post 18</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p11.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p11.webp" alt="Normal Post 16">
+                        <p class="photo-gallery__title-text">Normal Post 19</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Posts/p14.webp">
+                        <img src="assets/img/Album-Kit/Instagram-Posts/p14.webp" alt="Normal Post 16">
+                        <p class="photo-gallery__title-text">Normal Post 20</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content content--photo-gallery stories-gallery" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="photo-gallery__wrap">
+                <div class="photo-gallery__header" data-scroll data-scroll-speed="2">
+                    <h2 class="photo-gallery__title">Instagram Stories</h2>
+                    <p class="photo-gallery__subtitle">Vertical Instagram stories, displayed in a 5-column grid for maximum visual variety.</p>
+                </div>
+                <div class="stories-gallery__grid" data-scroll data-scroll-speed="1">
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s1.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s1.webp" alt="Story 1">
+                        <p class="photo-gallery__title-text">Story 1</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s2.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s2.webp" alt="Story 2">
+                        <p class="photo-gallery__title-text">Story 2</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s3.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s3.webp" alt="Story 3">
+                        <p class="photo-gallery__title-text">Story 3</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s4.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s4.webp" alt="Story 4">
+                        <p class="photo-gallery__title-text">Story 4</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s5.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s5.webp" alt="Story 5">
+                        <p class="photo-gallery__title-text">Story 5</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s6.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s6.webp" alt="Story 6">
+                        <p class="photo-gallery__title-text">Story 6</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s7.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s7.webp" alt="Story 7">
+                        <p class="photo-gallery__title-text">Story 7</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s8.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s8.webp" alt="Story 8">
+                        <p class="photo-gallery__title-text">Story 8</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s9.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s9.webp" alt="Story 9">
+                        <p class="photo-gallery__title-text">Story 9</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s10.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s10.webp" alt="Story 10">
+                        <p class="photo-gallery__title-text">Story 10</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s11.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s11.webp" alt="Story 11">
+                        <p class="photo-gallery__title-text">Story 11</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s12.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s12.webp" alt="Story 12">
+                        <p class="photo-gallery__title-text">Story 12</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s13.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s13.webp" alt="Story 13">
+                        <p class="photo-gallery__title-text">Story 13</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s14.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s14.webp" alt="Story 14">
+                        <p class="photo-gallery__title-text">Story 14</p>
+                    </div>
+                    <div class="photo-gallery__item" data-photo="assets/img/album-kit/Instagram-Stories/s15.webp">
+                        <img src="assets/img/album-kit/Instagram-Stories/s15.webp" alt="Story 15">
+                        <p class="photo-gallery__title-text">Story 15</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Pricing Section (Deliverables) -->
+        <section class="content content--deliverables" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="deliverables__wrap">
+                <h2 class="deliverables__title">Pricing</h2>
+                <p class="deliverables__subtitle">Choose the perfect editing pack for your pre-wedding film. Transparent pricing, premium quality.</p>
+
+                <!-- Basic Editing Pack -->
+                <h3 class="deliverables__table-title" style="font-size:2rem; margin-top:2.5rem; margin-bottom:0.5rem; color: #f29464; text-align:center;">Basic Editing Pack</h3>
+                <p class="deliverables__subtitle" style="text-align:center;">Included Deliverables</p>
+                <table class="deliverables__table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1-Minute Teaser</td>
+                            <td>Short, high-impact highlight edit with cinematic transitions — perfect for WhatsApp sharing or social media.</td>
+                        </tr>
+                        <tr>
+                            <td>2-3 Min Teaser</td>
+                            <td>Synced to romantic tracks, this edit captures the essence of your love story — ideal for Instagram/YouTube.</td>
+                        </tr>
+                        <tr>
+                            <td>5-6 Min Short Film</td>
+                            <td>A narrative-driven film with ambient sound, music overlays, and seamless editing to tell your story.</td>
+                        </tr>
+                        <tr>
+                            <td>2-3 Social Media Reels</td>
+                            <td>Vertical format (9:16), engaging 30-45 sec edits with hooks — ready for Instagram & YouTube Shorts.</td>
+                        </tr>
+                        <tr>
+                            <td>Photo Slideshow (Optional)</td>
+                            <td>A cinematic slideshow of selected stills, synced with music, for a cohesive pre-wedding presentation.</td>
+                        </tr>
+                        <tr>
+                            <td>Color-Graded Footage</td>
+                            <td>Cinematic grading tailored to your theme — romantic, vibrant, or dreamy aesthetics.</td>
+                        </tr>
+                        <tr>
+                            <td>Basic Audio Cleanup</td>
+                            <td>Noise removal and sound enhancement for clear audio in dialogues or ambient sounds.</td>
+                        </tr>
+                        <tr>
+                            <td>Logo Animation (Optional)</td>
+                            <td>Custom animated intro/outro or branding for a professional touch.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="price-tag-wrap">
+                    <span class="price-tag price-tag--modern">
+                        <i class="fa-solid fa-crown price-tag__icon"></i>
+                        <span class="price-tag__text">Starting from ₹8,000/-</span>
+                        <span class="price-tag__ribbon">Best Value</span>
+                    </span>
+                </div>
+ </div>
+        </section>
+        <section class="content content--about-events" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="about-events__wrap">
+                <h2 class="about-events__title">About Events</h2>
+                <p class="about-events__subtitle">Crafting cinematic memories that capture the essence of your corporate and engagement events.</p>
+                <p class="about-events__text">Corporate and engagement events are milestones that deserve to be captured with precision and artistry. My event videography services are designed to showcase the energy, elegance, and emotion of your special occasions, whether it’s a high-profile corporate gala or an intimate engagement celebration. From dynamic conference highlights to heartfelt proposal moments, I create films that resonate with your audience.</p>
+                <p class="about-events__text">My approach blends creative storytelling with technical expertise, using tools like Adobe Premiere Pro, After Effects, and AI-enhanced software to deliver polished, professional-grade videos. I focus on capturing the atmosphere, key moments, and unique details of your event, ensuring every film is a true reflection of its significance. Whether it’s a corporate event for branding or an engagement celebration filled with love, I tailor each project to your vision.</p>
+                <ul class="about-events__keypoints">
+                    <li class="about-events__keypoint">Tailored Storytelling: Films customized to reflect the unique vibe and purpose of your event.</li>
+                    <li class="about-events__keypoint">Cinematic Excellence: High-quality editing, color grading, and sound design for a professional look.</li>
+                    <li class="about-events__keypoint">Versatile Coverage: From corporate conferences to intimate engagements, I capture every moment with care.</li>
+                    <li class="about-events__keypoint">Social Media Optimization: Videos formatted for platforms like Instagram, YouTube, and LinkedIn for maximum reach.</li>
+                    <li class="about-events__keypoint">Efficient Delivery: Streamlined workflows using AI tools to ensure timely, high-quality results.</li>
+                </ul>
+                <p class="about-events__text">Every event is a story waiting to be told. I collaborate closely with you to understand your goals and deliver a cinematic keepsake that captures the essence of your occasion, leaving a lasting impression.</p>
+            </div>
+        </section>
+        <section class="content content--cta" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="cta__wrap">
+                <h2 class="cta__title" data-scroll data-scroll-speed="2">Let's Create <span>Something</span> Extraordinary</h2>
+                <p class="cta__subtitle" data-scroll data-scroll-speed="1">Your story deserves to be told with the same passion and beauty with which it was lived. Let's collaborate to create a cinematic masterpiece you'll cherish forever.</p>
+                <div class="cta__buttons" data-scroll data-scroll-speed="1">
+                    <a href="contact.html" class="cta__button cta__button--primary">
+                        <i class="fas fa-play"></i> Start Your Project <span class="btn-effect"></span>
+                    </a>
+                    <a href="portfolio.html" class="cta__button cta__button--secondary">
+                        <i class="fas fa-photo-video"></i> View My Work
+                    </a>
+                </div>
+                <div class="cta__socials" data-scroll data-scroll-speed="0.5">
+                    <a href="#" class="cta__social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="cta__social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+        <section class="content content--footer" data-scroll-section>
+            <div class="section-overlay"></div>
+            <div class="frame--footer">
+                <p class="frame__copyright">© 2025 MotionArc. All rights reserved.</p>
+            </div>
+        </section>
+        <div class="photo-modal">
+            <div class="photo-modal__content">
+                <img class="photo-modal__img" src="" alt="Enlarged Photo">
+                <div class="photo-modal__close"><i class="fas fa-times"></i></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script>
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true,
+            multiplier: 1,
+            lerp: 0.1
+        });
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navLinks.classList.toggle('active');
+        });
+        const photoItems = document.querySelectorAll('.photo-gallery__item');
+        const photoModal = document.querySelector('.photo-modal');
+        const modalImg = document.querySelector('.photo-modal__img');
+        const closePhotoModal = document.querySelector('.photo-modal__close');
+        photoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.getAttribute('data-photo');
+                modalImg.src = imgSrc;
+                photoModal.classList.add('active');
+                const galleryType = item.closest('.content--photo-gallery').classList[2];
+                photoModal.querySelector('.photo-modal__content').className = `photo-modal__content ${galleryType}`;
+            });
+        });
+        closePhotoModal.addEventListener('click', () => {
+            photoModal.classList.remove('active');
+            modalImg.src = '';
+            photoModal.querySelector('.photo-modal__content').className = 'photo-modal__content';
+        });
+        photoModal.addEventListener('click', (e) => {
+            if (e.target === photoModal) {
+                photoModal.classList.remove('active');
+                modalImg.src = '';
+                photoModal.querySelector('.photo-modal__content').className = 'photo-modal__content';
+            }
+        });
+    </script>
+    <style>
+    .whatsapp-chat-btn {
+        position: fixed;
+        left: 32px;
+        bottom: 32px;
+        right: auto;
+        top: auto;
+        z-index: 9999;
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 8px 32px rgba(18,140,126,0.18), 0 2px 10px rgba(18,140,126,0.10);
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: box-shadow 0.2s, transform 0.2s, background 0.2s, border 0.2s;
+        text-decoration: none;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        font-size: 2rem;
+        padding: 0;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        /* Gradient border using pseudo-element */
+        position: fixed;
+        overflow: visible;
+    }
+    .whatsapp-chat-btn::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        padding: 0.5px;
+        background: linear-gradient(135deg, #ff00ab 0%, #00d3d1 100%);
+        z-index: -1;
+        pointer-events: none;
+        transition: background 0.2s;
+    }
+    .whatsapp-chat-btn:hover::before {
+        background: linear-gradient(135deg, #00d3d1 0%, #ff00ab 100%);
+    }
+    
+    .whatsapp-chat-btn:hover {
+        box-shadow: 0 12px 40px rgba(18,140,126,0.28);
+        transform: scale(1.09);
+        background: rgba(255,255,255,0.18);
+        /* border handled by ::before */
+    }
+    .whatsapp-chat-btn .fa-whatsapp {
+        font-size: 2.2rem;
+        color: #fff;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+    }
+    .whatsapp-tooltip {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        left: 110%;
+        bottom: 50%;
+        transform: translateY(50%);
+        background: rgba(17,17,17,0.7);
+        color: #fff;
+        padding: 0.5em 1em;
+        border-radius: 8px;
+        font-size: 1rem;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(18,140,126,0.18);
+        transition: opacity 0.2s, border 0.2s;
+        pointer-events: none;
+        backdrop-filter: blur(6px);
+        border: 2px solid;
+        border-image: linear-gradient(135deg, #ff00ab 0%, #00d3d1 100%);
+        border-image-slice: 1;
+    }
+    .whatsapp-chat-btn:hover .whatsapp-tooltip {
+        opacity: 1;
+        visibility: visible;
+        border-image: linear-gradient(135deg, #00d3d1 0%, #ff00ab 100%);
+        border-image-slice: 1;
+    }
+    @media (max-width: 576px) {
+        .whatsapp-chat-btn {
+            position: fixed;
+            left: 12px;
+            bottom: 12px;
+            right: auto;
+            top: auto;
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            padding: 0;
+            overflow: visible;
+        }
+        .whatsapp-chat-btn::before {
+            border-radius: 50%;
+        }
+        }
+        .whatsapp-tooltip {
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+    
+    @media (max-width: 576px) {
+        .whatsapp-chat-btn {
+            left: 12px;
+            bottom: 12px;
+            font-size: 1.5rem;
+            padding: 0.5em 0.9em 0.5em 0.7em;
+        }
+        .whatsapp-tooltip {
+            font-size: 0.9rem;
+        }
+    }
+    </style>
+</body>
+</html>
