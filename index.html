@@ -14,31 +14,40 @@
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
     <style>
-        /* General section styling for full-screen background */
-        section {
-            position: relative;
+        /* Only hero section is fullscreen */
+        section.tiles#grid {
             min-height: 100vh;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            position: relative;
             z-index: 1;
         }
-        /* Overlay to ensure text readability */
-        section::before {
+        /* Other sections stack normally */
+        section:not(.tiles#grid) {
+            min-height: auto;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            z-index: 1;
+        }
+        /* Remove background-attachment: fixed globally */
+        /* Overlay to ensure text readability for hero only */
+        section.tiles#grid::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+            background: rgba(0, 0, 0, 0.3);
             z-index: -1;
         }
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            section {
-                background-attachment: scroll; /* Disable fixed background on mobile for performance */
+            section.tiles#grid {
+                background-attachment: scroll;
             }
         }
     </style>
@@ -327,20 +336,383 @@
 
         
         <!-- Video Portfolio Section -->
-        <section class="content content--video-categories section-video-categories" data-scroll style="background-image: url('assets/img/gradients/13.jpg');">
-            <h2 class="video-categories-title">Video Portfolio</h2>
-            <p class="video-categories-subtitle">Explore my work across various genres</p>
-            <div class="video-categories-container">
-                <aside class="video-categories-sidebar" data-scroll data-scroll-speed="0.5">
-                    <ul class="video-categories-filters">
+                 <section class="content content--video-portfolio" data-scroll-section>
+        <div class="section-overlay"></div>
+        <div class="video-portfolio__wrap">
+            <div class="video-portfolio__header" data-scroll data-scroll-speed="2">
+                <h2 class="video-portfolio__title">Video Portfolio</h2>
+                <p class="video-portfolio__subtitle">Explore our collection of cinematic wedding videos, showcasing love stories through teasers, films, and albums.</p>
+            </div>
+            <div class="video-portfolio__container">
+                <aside class="video-portfolio__sidebar" data-scroll data-scroll-speed="0.5">
+                    <ul class="video-portfolio__filters">
                         <li><button class="video-filter-btn active" data-filter="Pre-Wedding-Teaser">Pre-Wedding Teaser</button></li>
                         <li><button class="video-filter-btn" data-filter="Pre-Wedding-Film">Pre-Wedding Film</button></li>
                         <li><button class="video-filter-btn" data-filter="Wedding-Trailer">Wedding Trailer</button></li>
                         <li><button class="video-filter-btn" data-filter="Wedding-Film">Wedding Film</button></li>
-                        <li><button class="video-filter-btn" data-filter="Other-Events">Other Events</button></li>
+                        <li><button class="video-filter-btn" data-filter="Album-Kit">Album & Kit</button></li>
                     </ul>
                 </aside>
+                <div class="video-portfolio__grid" data-scroll data-scroll-speed="1">
+                    <!-- Pre-Wedding Teaser -->
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1LvZ1Ikq5xGeSZonIAXQybPBJrcNEhHEf/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/14.webp" alt="Pre-Wedding Teaser 1 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Joyful Moments Teaser</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1Fkc6FJ7ELSNeE-dAO2H1QXgLU9kitMCx/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/15.webp" alt="Pre-Wedding Teaser 2 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Elegant Vows Teaser</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1YokAbK_XvWG5sYFZQFvTAg5flFvtBYkN/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/24.webp" alt="Pre-Wedding Teaser 3 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Romantic Glimpse</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1TOBe8rLCiUyTwzsFGYh40vC1KfgikyXv/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/18.webp" alt="Pre-Wedding Teaser 4 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love in Bloom</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1o1yIIjW4fmr-HhiymeA2dwKEp_75bOyS/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/12.webp" alt="Pre-Wedding Teaser 5 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Timeless Love</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/14kuPRH2PD8zH_xEufI2T--589FDyIrrN/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/11.webp" alt="Pre-Wedding Teaser 6 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Forever Begins</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1aTUBrU7zw_j1MZxw4NC9BwDyyEaQ8ryQ/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/19.webp" alt="Pre-Wedding Teaser 7 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Heartfelt Moments</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1FbUsVATvth856KOEOXn7M-wMIy1plwBN/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/22.webp" alt="Pre-Wedding Teaser 8 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Eternal Vows</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1jwRFZSffL4r6YjDjxy6ikeUe5B9AhUeU/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/13.webp" alt="Pre-Wedding Teaser 9 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Journey</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1h11Gk9zNyFcgHrebLFzEOFxxMUqacJl-/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/16.webp" alt="Pre-Wedding Teaser 10 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Cherished Memories</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1jmTGShy0kSObCC7MrOzPsa_mSZ0tO_uO/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/17.jpg" alt="Pre-Wedding Teaser 11 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Romantic Escape</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Teaser"
+                        data-video='<iframe src="https://drive.google.com/file/d/1ISC6lu2ktu6i-i8cYeVWvYGO7FtQwIHN/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-teaser/20.webp" alt="Pre-Wedding Teaser 12 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Forever Love</p>
+                    </div>
+                    <!-- Pre-Wedding Film -->
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/17oenyJfQK9X2syb6fzOtRi_CaDa84rVP/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/33.webp" alt="Pre-Wedding Film 1 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love Story Film</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1JSxKg3YKUaH70Tm33MRZ1hNH2xKS613s/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/40.webp" alt="Pre-Wedding Film 2 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Eternal Bond</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1W3hvU4C_DwfTcFAVGzn6-RevF76MVDvh/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/39.webp" alt="Pre-Wedding Film 3 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Journey Together</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1YsUTfLzT3Z82UbCgnLoTz-LaTPQOMYhH/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/36.webp" alt="Pre-Wedding Film 4 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Heart's Promise</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1yvnP-_PN3w-cFf6AN-88ZKVOQOfnab_j/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/34.webp" alt="Pre-Wedding Film 5 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Timeless Romance</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1ainwRuYhg8MykpKGVOPW0uRQRScUA-US/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/31.webp" alt="Pre-Wedding Film 6 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Forever Yours</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1ILg2iskduSLOlX0m3CrfEjfQOxCiZ2HK/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/32.webp" alt="Pre-Wedding Film 7 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Embrace</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/143z_lYu2kp579V4XL0nrLJcqO_EiqXsx/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/35.webp" alt="Pre-Wedding Film 8 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Soulful Vows</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Pre-Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1o5kfPENSVgw8Wo3ibTeUL6wVfDeg3eIG/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/pre-wedding-film/41.webp" alt="Pre-Wedding Film 9 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Eternal Love</p>
+                    </div>
                 
+                    <!-- Wedding Trailer -->
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1mKMqjN_j3-3dWPTmkR_DdgOc4oj7CYBU/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/71.webp" alt="Wedding Trailer 1 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Wedding Glimpse</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1fpBkhRbqEGKMeYPCVsv27039dX0XZJ-3/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/72.webp" alt="Wedding Trailer 2 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Vow Highlights</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/13U0HEXQg3g8Q841IXijBm6Tl9eLodbeF/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/73.webp" alt="Wedding Trailer 3 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Joyful Union</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1FYr21tG4BmZFq3qFblaOSW6glwWQa-fk/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/74.webp" alt="Wedding Trailer 4 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Celebration Teaser</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1dnRSZ-K5aCWtUJq1KSpgXerJFqRrh8Bv/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/75.webp" alt="Wedding Trailer 5 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Day</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1PSHhzQEvvZB1JY4AVN5M5ErOXplt_iTE/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/76.webp" alt="Wedding Trailer 6 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Sacred Vows</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1G6oJ2-m-k15LfmryKmb9PV4-NzltDfD1/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/77.webp" alt="Wedding Trailer 7 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Festive Moments</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1JQZbiDLR3X2CE5tb9mu9cLIOTkji3enR/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/78.webp" alt="Wedding Trailer 8 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Union Bliss</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/15RVNXcp3O1fjtvVMHcNC3TUSaF-QLBc5/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/79.webp" alt="Wedding Trailer 9 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Eternal Day</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1Q36lqXNhVAaPMq8Sot3Mt--URTS2vKC6/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/80.webp" alt="Wedding Trailer 10 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Celebration</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1vRHgckngsbhMfQPIPoSonjdNyDXjw6dh/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/81.webp" alt="Wedding Trailer 11 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Joyful Vows</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Trailer" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1VpmF5KVv9erDNc9k06mRrzxAdUeKsDPY/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-teaser/82.webp" alt="Wedding Trailer 12 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Forever Union</p>
+                    </div>
+                    <!-- Wedding Film -->
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1uVTMBc41WZSwdLTw3iHITrN8FKkGC_d1/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/51.webp" alt="Wedding Film 1 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Wedding Story</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1hCMSfWUE99BdNqryS_X5-XuqwLifrBMX/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/52.webp" alt="Wedding Film 2 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Vow Chronicles</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1V3XVrWPYrXqUwjF6fW-_bzLpwMUn0fsL/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/53.webp" alt="Wedding Film 3 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Journey</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/16y6eH12AerG1wIJSCmJ6lNri1cbmpmua/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/54.webp" alt="Wedding Film 4 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Eternal Moments</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/13V_Idg1p9Ktbgp-NvYK4X6VJfpcKD9O0/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/56.webp" alt="Wedding Film 5 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Sacred Bond</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1dQNMVmZRMqPy6jTgK7zMaGxlzQHnxBnx/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/57.webp" alt="Wedding Film 6 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Forever Love</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1mKy0SH74czeLYLorGxsZgGlXR8Jfxva2/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/58.webp" alt="Wedding Film 7 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Heartfelt Union</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/152ZRStuGlUZ2H9OGawYKs0l5UOORU1RV/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/59.webp" alt="Wedding Film 8 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Timeless Vows</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1JoQjZTblgWsHfVSsf_iHEma3j4NfS_38/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/60.webp" alt="Wedding Film 9 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Legacy</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/182mC-WfSfbt8OWqLw2eqZZXTEwelm5t3/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/61.webp" alt="Wedding Film 10 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Romantic Saga</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/14W7C0WpaJ1yswIsJ3HLNkZdphXMo9IWm/preview"  style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/62.webp" alt="Wedding Film 11 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Cherished Day</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Wedding-Film" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/1irXvZZ1PeHQzHi8rStkMFfIiJPEnjkG4/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/63.webp" alt="Wedding Film 12 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Eternal Journey</p>
+                    </div>
+                    <!-- Album & Kit -->
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/1.webp" alt="Album & Kit 1 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Memory Album</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/2.webp" alt="Album & Kit 2 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Keepsake Moments</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/3.webp" alt="Album & Kit 3 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Timeless Keepsake</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/4.webp" alt="Album & Kit 4 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Collection</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/5.webp" alt="Album & Kit 5 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Cherished Album</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/6.webp" alt="Album & Kit 6 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Forever Memories</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/7.webp" alt="Album & Kit 7 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Romantic Keepsake</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/8.webp" alt="Album & Kit 8 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Treasure</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/9.webp" alt="Album & Kit 9 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Eternal Album</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/10.webp" alt="Album & Kit 10 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Memory Collection</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/11.webp" alt="Album & Kit 11 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Timeless Treasure</p>
+                    </div>
+                    <div class="video-portfolio__item" data-category="Album-Kit" style="display: none;"
+                        data-video='<iframe src="https://drive.google.com/file/d/PLACEHOLDER/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/album-kit/12.webp" alt="Album & Kit 12 Thumbnail">
+                        <div class="video-portfolio__play-btn"><i class="fas fa-play"></i></div>
+                        <p class="video-portfolio__title-text">Love's Keepsake</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="video-modal" id="videoModal">
+            <div class="video-modal__content">
+                <span class="video-modal__close"><i class="fas fa-times"></i></span>
+                <div class="video-modal__iframe"></div>
+            </div>
+        </div>
+    </section>
+
                 
         </section>
 
@@ -554,7 +926,7 @@
         <section class="content content--numbered content--contact" id="contact">
             <div class="contact-container">
                 <div class="contact-profile" data-scroll data-scroll-speed="1">
-                    <div class="contact-image" style="background-image:url(assets/img/tirth-profile.jpg)">
+                    <div class="contact-image" style="background-image:url(assets/img/tirth-profile.webp)">
                         <div class="image-overlay"></div>
                     </div>
                     <h2 class="contact-name">Tirth Bhavsar</h2>
@@ -920,6 +1292,805 @@
                 font-size: 1rem;
             }
         }
+.content--video-portfolio {
+    min-height: 100vh;
+    padding: 4rem 0;
+    position: relative;
+    background: #111 url('assets/img/gradients/66.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.video-portfolio__wrap {
+    max-width: 90vw;
+    width: 90vw;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.video-portfolio__header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.video-portfolio__title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 1rem 0;
+    position: relative;
+    display: inline-block;
+}
+
+.video-portfolio__title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--color-link);
+    transition: width 0.4s ease;
+}
+
+.video-portfolio__title:hover::after {
+    width: 150px;
+}
+
+.video-portfolio__subtitle {
+    font-size: 1.4rem;
+    color: var(--color-alt);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.video-portfolio__container {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.video-portfolio__sidebar {
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+.video-portfolio__filters {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.video-filter-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 8px;
+    color: var(--color-text);
+    font-size: 1.1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.video-portfolio__filters li:nth-child(1) .video-filter-btn:hover,
+.video-portfolio__filters li:nth-child(1) .video-filter-btn.active {
+    background: #ff00ab;
+    color: #fff;
+    transform: translateX(8px);
+}
+
+.video-portfolio__filters li:nth-child(2) .video-filter-btn:hover,
+.video-portfolio__filters li:nth-child(2) .video-filter-btn.active {
+    background: #f29464;
+    color: #fff;
+    transform: translateX(8px);
+}
+
+.video-portfolio__filters li:nth-child(3) .video-filter-btn:hover,
+.video-portfolio__filters li:nth-child(3) .video-filter-btn.active {
+    background: #7b67f0;
+    color: #fff;
+    transform: translateX(8px);
+}
+
+.video-portfolio__filters li:nth-child(4) .video-filter-btn:hover,
+.video-portfolio__filters li:nth-child(4) .video-filter-btn.active {
+    background: #69b490;
+    color: #fff;
+    transform: translateX(8px);
+}
+
+.video-portfolio__filters li:nth-child(5) .video-filter-btn:hover,
+.video-portfolio__filters li:nth-child(5) .video-filter-btn.active {
+    background: #00d3d1;
+    color: #fff;
+    transform: translateX(8px);
+}
+
+.video-portfolio__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.video-portfolio__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: 100%;
+}
+
+.video-portfolio__item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-portfolio__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.video-portfolio__play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: var(--color-text);
+    transition: color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+    background: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.video-portfolio__item:hover .video-portfolio__play-btn {
+    color: var(--color-alt);
+    transform: translate(-50%, -50%) scale(1.2);
+    background: rgba(39, 167, 118, 0.4);
+}
+
+.video-portfolio__title-text {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.4rem;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.video-modal__content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 16/9;
+}
+
+.video-modal__iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 0;
+}
+
+.video-modal__close {
+    position: absolute;
+    top: -35px;
+    right: 0;
+    font-size: 1.8rem;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.video-modal__close:hover {
+    color: var(--color-alt);
+}
+
+@media (max-width: 1200px) {
+    .video-portfolio__grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .video-portfolio__container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-portfolio__sidebar {
+        flex: 0 0 auto;
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .video-portfolio__filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .video-filter-btn {
+        width: auto;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .video-portfolio__grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content--video-portfolio {
+        padding: 2rem 0;
+        min-height: auto;
+        width: 100vw;
+    }
+
+    .video-portfolio__wrap {
+        padding: 0 1rem;
+        max-width: 100vw;
+        width: 100vw;
+    }
+
+    .video-portfolio__title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .video-portfolio__subtitle {
+        font-size: 1rem;
+        max-width: 100%;
+        line-height: 1.5;
+    }
+
+    .video-portfolio__filters {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .video-filter-btn {
+        background: #222;
+        color: #fff;
+        border-radius: 20px;
+        padding: 8px 18px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .video-filter-btn.active,
+    .video-filter-btn:focus {
+        background: #27a776;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(39, 167, 118, 0.15);
+    }
+
+    .video-portfolio__grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .video-portfolio__play-btn {
+        font-size: 1.8rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .video-portfolio__title-text {
+        font-size: 0.8rem;
+        padding: 0.3rem;
+        bottom: 6px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content--video-portfolio {
+        padding: 1.5rem 0;
+        background: #111 url('assets/img/gradients/mobile-view/51.webp') center/cover no-repeat;
+        background-attachment: scroll;
+        width: 100vw;
+    }
+
+    .video-portfolio__wrap {
+        max-width: 100vw;
+        width: 100vw;
+        padding: 0 1rem;
+    }
+
+    .video-portfolio__title {
+        font-size: 2rem;
+    }
+
+    .video-portfolio__subtitle {
+        font-size: 0.9rem;
+    }
+
+    .video-portfolio__filters {
+        gap: 6px;
+        margin-bottom: 0.5rem; /* Reduced gap between filters and grid */
+    }
+
+    .video-filter-btn {
+        padding: 10px 16px; /* Slightly increased padding for larger buttons */
+        font-size: 0.95rem; /* Slightly larger font size */
+        border-radius: 24px; /* Slightly more rounded for modern look */
+        background: #222;
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .video-filter-btn.active,
+    .video-filter-btn:focus {
+        background: #27a776;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(39, 167, 118, 0.15);
+    }
+
+    .video-portfolio__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .video-portfolio__play-btn {
+        font-size: 1.5rem;
+        width: 35px;
+        height: 35px;
+    }
+
+    .video-portfolio__title-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: left; /* Left-aligned like YouTube/Netflix */
+        font-size: 0.85rem; /* Slightly larger for readability */
+        font-weight: 500; /* Medium weight for modern look */
+        color: #fff; /* White for better contrast */
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)); /* Gradient like streaming platforms */
+        padding: 0.6rem 0.8rem; /* More padding for elegance */
+        border-radius: 0; /* No border radius for full-width effect */
+        z-index: 2;
+        line-height: 1.3; /* Better text spacing */
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    }
+
+    .video-modal__content {
+        width: 95%;
+        max-width: 100%;
+    }
+
+    .video-modal__close {
+        top: -30px;
+        font-size: 1.5rem;
+    }
+}
+
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+  const galleries = document.querySelector('.ipl-galleries');
+  const dots = document.querySelectorAll('.ipl-galleries-dots .dot');
+  if (!galleries || !dots.length) return;
+
+  let currentIndex = 0;
+  let autoSlideInterval;
+  const totalSlides = galleries.querySelectorAll('li').length;
+
+  function goToSlide(index) {
+    const itemWidth = galleries.querySelector('li')?.offsetWidth || 1;
+    galleries.scrollTo({ left: index * itemWidth, behavior: 'smooth' });
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    currentIndex = index;
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(() => {
+      let nextIndex = (currentIndex + 1) % totalSlides;
+      goToSlide(nextIndex);
+    }, 3000);
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', function () {
+      goToSlide(i);
+      startAutoSlide();
+    });
+  });
+
+  let isTouching = false;
+  let startX = 0;
+  let scrollStart = 0;
+  galleries.addEventListener('touchstart', function (e) {
+    isTouching = true;
+    startX = e.touches[0].clientX;
+    scrollStart = galleries.scrollLeft;
+    stopAutoSlide();
+  });
+  galleries.addEventListener('touchmove', function (e) {
+    if (!isTouching) return;
+    const dx = startX - e.touches[0].clientX;
+    galleries.scrollLeft = scrollStart + dx;
+  });
+  galleries.addEventListener('touchend', function (e) {
+    isTouching = false;
+    const itemWidth = galleries.querySelector('li')?.offsetWidth || 1;
+    const scrollLeft = galleries.scrollLeft;
+    const index = Math.round(scrollLeft / itemWidth);
+    const dx = startX - (e.changedTouches ? e.changedTouches[0].clientX : 0);
+    let targetIndex = index;
+    if (Math.abs(dx) > 40) {
+      if (dx > 0 && index < totalSlides - 1) targetIndex = index + 1;
+      if (dx < 0 && index > 0) targetIndex = index - 1;
+    }
+    goToSlide(targetIndex);
+    startAutoSlide();
+  });
+
+  let isDragging = false;
+  let mouseStartX = 0;
+  let mouseScrollStart = 0;
+  galleries.addEventListener('mousedown', function (e) {
+    isDragging = true;
+    mouseStartX = e.clientX;
+    mouseScrollStart = galleries.scrollLeft;
+    stopAutoSlide();
+  });
+  galleries.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    const dx = mouseStartX - e.clientX;
+    galleries.scrollLeft = mouseScrollStart + dx;
+  });
+  galleries.addEventListener('mouseup', function () {
+    isDragging = false;
+    const itemWidth = galleries.querySelector('li')?.offsetWidth || 1;
+    const index = Math.round(galleries.scrollLeft / itemWidth);
+    goToSlide(index);
+    startAutoSlide();
+  });
+  galleries.addEventListener('mouseleave', function () {
+    if (isDragging) {
+      isDragging = false;
+      const itemWidth = galleries.querySelector('li')?.offsetWidth || 1;
+      const index = Math.round(galleries.scrollLeft / itemWidth);
+      goToSlide(index);
+      startAutoSlide();
+    }
+  });
+
+  galleries.addEventListener('scroll', function () {
+    const itemWidth = galleries.querySelector('li')?.offsetWidth || 1;
+    const index = Math.round(galleries.scrollLeft / itemWidth);
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    currentIndex = index;
+  });
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+  if (isMobile()) {
+    goToSlide(0);
+    startAutoSlide();
+  }
+  window.addEventListener('resize', function () {
+    if (isMobile()) {
+      startAutoSlide();
+    } else {
+      stopAutoSlide();
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const galleries = document.querySelector('.ipl-galleries');
+  const dots = document.querySelectorAll('.ipl-galleries-dots .dot');
+  if (galleries && dots.length) {
+    galleries.addEventListener('scroll', function () {
+      const scrollLeft = galleries.scrollLeft;
+      const itemWidth = galleries.querySelector('li')?.offsetWidth || 1;
+      const index = Math.round(scrollLeft / itemWidth);
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    });
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', function () {
+        galleries.scrollTo({ left: i * (galleries.querySelector('li')?.offsetWidth || 1), behavior: 'smooth' });
+      });
+    });
+  }
+});
+
+try {
+  const scroll = new LocomotiveScroll({
+    el: document.querySelector('[data-scroll-container]'),
+    smooth: true,
+    lerp: 0.1,
+    multiplier: 1
+  });
+
+  console.log('Locomotive Scroll initialized successfully');
+
+  const backtopEl = document.querySelector('.backtop');
+  const headerEl = document.querySelector('#header');
+  if (backtopEl && headerEl) {
+    backtopEl.addEventListener('click', () => {
+      scroll.scrollTo(headerEl);
+      console.log('Back to top clicked');
+    });
+  }
+
+  const titleEl = document.querySelector('.tiles__title');
+  if (titleEl && (document.body.classList.contains('demo-2') || document.body.classList.contains('demo-home'))) {
+    scroll.on('call', (value) => {
+      if (value === 'titleAnim') {
+        titleEl.classList.add('tiles__title--animate');
+        console.log('Title animation triggered');
+      }
+    });
+  }
+
+  const testimonialsTrack1 = document.getElementById('testimonials-track-1');
+  const testimonialsTrack2 = document.getElementById('testimonials-track-2');
+  
+  if (testimonialsTrack1 && testimonialsTrack2) {
+    const testimonials1 = testimonialsTrack1.querySelectorAll('.testimonial-card');
+    const testimonials2 = testimonialsTrack2.querySelectorAll('.testimonial-card');
+    
+    testimonials1.forEach(card => {
+      const clone = card.cloneNode(true);
+      testimonialsTrack1.appendChild(clone);
+    });
+    
+    testimonials2.forEach(card => {
+      const clone = card.cloneNode(true);
+      testimonialsTrack2.appendChild(clone);
+    });
+  }
+
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message! I will get back to you soon.');
+      contactForm.reset();
+    });
+  }
+
+  scroll.on('scroll', (instance) => {
+    document.querySelectorAll('.mosaic-tile').forEach(tile => {
+      const rect = tile.getBoundingClientRect();
+      const isVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+      if (isVisible) {
+        tile.classList.add('mosaic-tile--animate');
+      }
+    });
+  });
+
+} catch (error) {
+  console.error('Locomotive Scroll initialization failed:', error);
+}
+
+const menuBtn = document.querySelector('.menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuBtn.classList.toggle('open');
+  });
+}
+
+const navItems = document.querySelectorAll('.nav-links a');
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    if (navLinks.classList.contains('active')) {
+      navLinks.classList.remove('active');
+      menuBtn.classList.remove('open');
+    }
+  });
+});
+
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.style.background = 'rgba(17, 17, 17, 0.7)';
+    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+  } else {
+    navbar.style.background = 'rgba(17, 17, 17, 0.2)';
+    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+  }
+});
+
+window.addEventListener('load', () => {
+  if (scroll) {
+    scroll.update();
+    console.log('Scroll updated on load');
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (scroll) {
+    scroll.update();
+    console.log('Scroll updated on resize');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.querySelector('.cinematic-showcase__carousel');
+  if (carousel) {
+    let isDragging = false;
+    let startX, scrollLeft;
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      carousel.style.cursor = 'grabbing';
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      isDragging = false;
+      carousel.style.cursor = 'grab';
+    });
+
+    carousel.addEventListener('mouseup', () => {
+      isDragging = false;
+      carousel.style.cursor = 'grab';
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    carousel.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    carousel.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const x = e.touches[0].pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+  }
+
+  if (scroll) {
+    scroll.update();
+    console.log('Locomotive Scroll updated for Films & Trailers page');
+  }
+});
+const videoModal = document.getElementById('videoModal');
+const videoIframeContainer = videoModal.querySelector('.video-modal__iframe');
+const videoClose = videoModal.querySelector('.video-modal__close');
+const videoItems = document.querySelectorAll('.video-portfolio__item');
+const filterButtons = document.querySelectorAll('.video-filter-btn');
+
+// Modal open
+videoItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const videoEmbed = item.getAttribute('data-video');
+        videoIframeContainer.innerHTML = videoEmbed;
+        videoModal.classList.add('active');
+    });
+});
+
+// Modal close
+videoClose.addEventListener('click', () => {
+    videoModal.classList.remove('active');
+    videoIframeContainer.innerHTML = '';
+});
+
+videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+        videoModal.classList.remove('active');
+        videoIframeContainer.innerHTML = '';
+    }
+});
+
+// Filter functionality
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+        videoItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            if (filter === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+    </script>
 </body>
 </html>
