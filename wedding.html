@@ -160,191 +160,7 @@
             cursor: grabbing;
         }
 
-        .popup-ad {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 3000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        .popup-ad.active {
-            display: flex;
-        }
-
-        .popup-ad__content {
-            position: relative;
-            max-width: 500px;
-            width: 90%;
-            background: linear-gradient(135deg, rgba(17, 17, 17, 0.95), rgba(39, 167, 118, 0.1));
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-            border: 2px solid;
-            border-image: linear-gradient(135deg, #f29464 0%, #f6838a 50%, #7b67f0 100%) 1;
-            animation: slideIn 0.6s ease-out forwards;
-        }
-
-        .popup-ad__close {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            width: 35px;
-            height: 35px;
-            background: var(--color-link);
-            color: var(--color-text);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(39, 167, 118, 0.3);
-        }
-
-        .popup-ad__close:hover {
-            background: var(--color-alt);
-            transform: scale(1.1);
-        }
-
-        .popup-ad__title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .popup-ad__title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--color-link);
-            transition: width 0.3s ease;
-        }
-
-        .popup-ad__title:hover::after {
-            width: 100px;
-        }
-
-        .popup-ad__text {
-            font-size: 1.1rem;
-            color: #fff;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup-ad__button {
-            display: inline-flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-decoration: none;
-            background: linear-gradient(100deg, #f29464 0%, #f6838a 50%, #7b67f0 100%);
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(39, 167, 118, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .popup-ad__button:hover {
-            background: linear-gradient(100deg, #7b67f0 0%, #f29464 50%, #f6838a 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(39, 167, 118, 0.4);
-        }
-
-        .popup-ad__button i {
-            margin-right: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .popup-ad__button:hover i {
-            transform: rotate(15deg);
-        }
-
-        .popup-ad__button .btn-effect {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-
-        .popup-ad__button:hover .btn-effect {
-            width: 200px;
-            height: 200px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .popup-ad__content {
-                width: 95%;
-                padding: 1.5rem;
-            }
-
-            .popup-ad__title {
-                font-size: 1.5rem;
-            }
-
-            .popup-ad__text {
-                font-size: 0.9rem;
-            }
-
-            .popup-ad__button {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            .popup-ad__close {
-                top: -10px;
-                right: -10px;
-                width: 30px;
-                height: 30px;
-                font-size: 1rem;
-            }
-        }
+    
 
         .navbar {
             position: fixed;
@@ -1877,93 +1693,97 @@
                     <p class="video-gallery__subtitle">Short, vibrant clips that highlight the essence of your wedding
                         day with cinematic energy and emotion.</p>
                 </div>
+                <div class="price-tag-wrap">
+                    <div class="price-tag--modern">
+                        <i class="fas fa-heart price-tag__icon"></i>
+                        <span class="price-tag__text">Starting at ₹25,000</span>
+                        <span class="price-tag__ribbon">Premium</span>
+                    </div>
+                </div>
                 <div class="video-gallery__grid" data-scroll data-scroll-speed="1">
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1VpmF5KVv9erDNc9k06mRrzxAdUeKsDPY/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1VpmF5KVv9erDNc9k06mRrzxAdUeKsDPY/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/71.webp"
                             alt="Wedding Teaser 1 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
                         <p class="video-gallery__title-text">Joyful Moments Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1Q36lqXNhVAaPMq8Sot3Mt--URTS2vKC6/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1Q36lqXNhVAaPMq8Sot3Mt--URTS2vKC6/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/72.webp"
                             alt="Wedding Teaser 2 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
                         <p class="video-gallery__title-text">Elegant Vows Teaser</p>
                     </div>
-                    <!-- Add more items with their respective Google Drive iframe embed codes -->
-                    <!-- Placeholder for remaining teasers, replace with actual embed codes -->
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/13U0HEXQg3g8Q841IXijBm6Tl9eLodbeF/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/13U0HEXQg3g8Q841IXijBm6Tl9eLodbeF/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/73.webp"
                             alt="Wedding Teaser 3 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
                         <p class="video-gallery__title-text">Festive Love Teaser</p>
                     </div>
-                    <!-- Continue for 74.webp to 82.webp with their respective Google Drive embed codes -->
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1FYr21tG4BmZFq3qFblaOSW6glwWQa-fk/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1FYr21tG4BmZFq3qFblaOSW6glwWQa-fk/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/74.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 4 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Romantic Bliss Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1dnRSZ-K5aCWtUJq1KSpgXerJFqRrh8Bv/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1dnRSZ-K5aCWtUJq1KSpgXerJFqRrh8Bv/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/75.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 5 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Timeless Love Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1PSHhzQEvvZB1JY4AVN5M5ErOXplt_iTE/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1PSHhzQEvvZB1JY4AVN5M5ErOXplt_iTE/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/76.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 6 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Eternal Vows Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1G6oJ2-m-k15LfmryKmb9PV4-NzltDfD1/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1G6oJ2-m-k15LfmryKmb9PV4-NzltDfD1/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/77.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 7 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Heartfelt Moments Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1JQZbiDLR3X2CE5tb9mu9cLIOTkji3enR/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1JQZbiDLR3X2CE5tb9mu9cLIOTkji3enR/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/78.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 8 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Celebration Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/15RVNXcp3O1fjtvVMHcNC3TUSaF-QLBc5/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/15RVNXcp3O1fjtvVMHcNC3TUSaF-QLBc5/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/79.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 9 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Love Story Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1Q36lqXNhVAaPMq8Sot3Mt--URTS2vKC6/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1Q36lqXNhVAaPMq8Sot3Mt--URTS2vKC6/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/80.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 10 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Joyous Union Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1vRHgckngsbhMfQPIPoSonjdNyDXjw6dh/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1vRHgckngsbhMfQPIPoSonjdNyDXjw6dh/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/81.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 11 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Vibrant Love Teaser</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1VpmF5KVv9erDNc9k06mRrzxAdUeKsDPY/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1VpmF5KVv9erDNc9k06mRrzxAdUeKsDPY/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-teaser/82.webp"
-                            alt="Wedding Teaser 3 Thumbnail">
+                            alt="Wedding Teaser 12 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Festive Love Teaser</p>
+                        <p class="video-gallery__title-text">Forever Together Teaser</p>
                     </div>
                 </div>
             </div>
@@ -1976,290 +1796,114 @@
                     <p class="video-gallery__subtitle">Comprehensive films that narrate the full story of your wedding
                         day, capturing every emotion and moment in cinematic detail.</p>
                 </div>
+                <div class="price-tag-wrap">
+                    <div class="price-tag--modern">
+                        <i class="fas fa-heart price-tag__icon"></i>
+                        <span class="price-tag__text">Starting at ₹75,000</span>
+                        <span class="price-tag__ribbon">Premium</span>
+                    </div>
+                </div>
                 <div class="video-gallery__grid" data-scroll data-scroll-speed="1">
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1uVTMBc41WZSwdLTw3iHITrN8FKkGC_d1/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1uVTMBc41WZSwdLTw3iHITrN8FKkGC_d1/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-film/51.webp" alt="Wedding Film 1 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
                         <p class="video-gallery__title-text">Forever Love Film</p>
                     </div>
-                    <!-- Add more items with their respective Google Drive iframe embed codes -->
-                    <!-- Placeholder for remaining films, replace with actual embed codes -->
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1hCMSfWUE99BdNqryS_X5-XuqwLifrBMX/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
+                        data-video='<iframe src="https://drive.google.com/file/d/1hCMSfW5aCWtUJq1KSpgXerJFqRrh8Bv/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
                         <img src="assets/img/thumbnails/portfolio/wedding-film/52.webp" alt="Wedding Film 2 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <!-- Continue for 53.webp to 66.webp with their respective Google Drive embed codes -->
-                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1V3XVrWPYrXqUwjF6fW-_bzLpwMUn0fsL/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/53.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                        <p class="video-gallery__title-text">Eternal Journey Film</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/16y6eH12AerG1wIJSCmJ6lNri1cbmpmua/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/54.webp" alt="Wedding Film 2 Thumbnail">
+                        data-video='<iframe src="https://drive.google.com/file/d/1PSHhzQEvvZB1JY4AVN5M5ErOXplt_iTE/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/53.webp" alt="Wedding Film 3 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                        <p class="video-gallery__title-text">Timeless Romance Film</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/13V_Idg1p9Ktbgp-NvYK4X6VJfpcKD9O0/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/56.webp" alt="Wedding Film 2 Thumbnail">
+                        data-video='<iframe src="https://drive.google.com/file/d/1G6oJ2-m-k15LfmryKmb9PV4-NzltDfD1/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/54.webp" alt="Wedding Film 4 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                        <p class="video-gallery__title-text">Heartfelt Union Film</p>
                     </div>
                     <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1dQNMVmZRMqPy6jTgK7zMaGxlzQHnxBnx/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/57.webp" alt="Wedding Film 2 Thumbnail">
+                        data-video='<iframe src="https://drive.google.com/file/d/1JQZbiDLR3X2CE5tb9mu9cLIOTkji3enR/preview" style="width:100%;height:100%;border:0;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>'>
+                        <img src="assets/img/thumbnails/portfolio/wedding-film/55.webp" alt="Wedding Film 5 Thumbnail">
                         <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
+                        <p class="video-gallery__title-text">Love Eternal Film</p>
                     </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1mKy0SH74czeLYLorGxsZgGlXR8Jfxva2/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/58.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/152ZRStuGlUZ2H9OGawYKs0l5UOORU1RV/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/59.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1JoQjZTblgWsHfVSsf_iHEma3j4NfS_38/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/60.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/182mC-WfSfbt8OWqLw2eqZZXTEwelm5t3/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/61.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/14W7C0WpaJ1yswIsJ3HLNkZdphXMo9IWm/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/62.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1irXvZZ1PeHQzHi8rStkMFfIiJPEnjkG4/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/63.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1FpUVYFmYbOT6x8LC_jlxdf8SHUw0jFFE/preview" style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/64.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1IlqH8-4vqD21jOoBVOREV8pdfFzY7hGw/preview"  style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/65.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                    <div class="video-gallery__item"
-                        data-video='<iframe src="https://drive.google.com/file/d/1r_6CxQ8S-zGtu_5d95hDbrwqKwLgCC-2/preview"  style="width:100%;height:100%;border:0;" allowfullscreen scrolling="no" allow="encrypted-media *;"></iframe>'>
-                        <img src="assets/img/thumbnails/portfolio/wedding-film/66.webp" alt="Wedding Film 2 Thumbnail">
-                        <div class="video-gallery__play-btn"><i class="fas fa-play"></i></div>
-                        <p class="video-gallery__title-text">Eternal Bliss Film</p>
-                    </div>
-                   
                 </div>
             </div>
         </section>
         <section class="content content--deliverables" data-scroll-section>
             <div class="section-overlay"></div>
             <div class="deliverables__wrap">
-                <h2 class="deliverables__title">Pricing</h2>
-                <p class="deliverables__subtitle">Choose the perfect editing pack for your pre-wedding film. Transparent
-                    pricing, premium quality.</p>
-                <h3 class="deliverables__table-title"
-                    style="font-size:2rem; margin-top:2.5rem; margin-bottom:0.5rem; color: #f29464; text-align:center;">
-                    Basic Editing Pack</h3>
-                <p class="deliverables__subtitle" style="text-align:center;">Included Deliverables</p>
+                <h2 class="deliverables__title">Deliverables</h2>
+                <p class="deliverables__subtitle">Our wedding packages are designed to provide you with cherished memories
+                    in various formats, tailored to your preferences.</p>
                 <table class="deliverables__table">
                     <thead>
                         <tr>
-                            <th>Item</th>
-                            <th>Description</th>
+                            <th>Package</th>
+                            <th>Duration</th>
+                            <th>Content</th>
+                            <th>Delivery Time</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1-Minute Teaser</td>
-                            <td>Short, high-impact highlight edit with cinematic transitions — perfect for WhatsApp
-                                sharing or social media.</td>
+                            <td>Teaser Package</td>
+                            <td>1-2 min</td>
+                            <td>Highlight Video, Social Media Clips</td>
+                            <td>2-3 Weeks</td>
                         </tr>
                         <tr>
-                            <td>2-3 Min Teaser</td>
-                            <td>Synced to romantic tracks, this edit captures the essence of your love story — ideal for
-                                Instagram/YouTube.</td>
+                            <td>Film Package</td>
+                            <td>5-10 min</td>
+                            <td>Full-Length Film, Highlight Reel</td>
+                            <td>4-6 Weeks</td>
                         </tr>
                         <tr>
-                            <td>5-6 Min Short Film</td>
-                            <td>A narrative-driven film with ambient sound, music overlays, and seamless editing to tell
-                                your story.</td>
-                        </tr>
-                        <tr>
-                            <td>2-3 Social Media Reels</td>
-                            <td>Vertical format (9:16), engaging 30-45 sec edits with hooks — ready for Instagram &
-                                YouTube Shorts.</td>
-                        </tr>
-                        <tr>
-                            <td>Photo Slideshow (Optional)</td>
-                            <td>A cinematic slideshow of selected stills, synced with music, for a cohesive pre-wedding
-                                presentation.</td>
-                        </tr>
-                        <tr>
-                            <td>Color-Graded Footage</td>
-                            <td>Cinematic grading tailored to your theme — romantic, vibrant, or dreamy aesthetics.</td>
-                        </tr>
-                        <tr>
-                            <td>Basic Audio Cleanup</td>
-                            <td>Noise removal and sound enhancement for clear audio in dialogues or ambient sounds.</td>
-                        </tr>
-                        <tr>
-                            <td>Logo Animation (Optional)</td>
-                            <td>Custom animated intro/outro or branding for a professional touch.</td>
+                            <td>Premium Package</td>
+                            <td>10-20 min</td>
+                            <td>Extended Film, Teaser, Social Media Content</td>
+                            <td>6-8 Weeks</td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="price-tag-wrap">
-                    <span class="price-tag price-tag--modern">
-                        <i class="fa-solid fa-crown price-tag__icon"></i>
-                        <span class="price-tag__text">Starting from ₹8,000/-</span>
-                        <span class="price-tag__ribbon">Best Value</span>
-                    </span>
-                </div>
-                <h3 class="deliverables__table-title"
-                    style="font-size:2rem; margin-top:2.5rem; margin-bottom:0.5rem; color: #f29464; text-align:center;">
-                    Premium Editing Pack</h3>
-                <p class="deliverables__subtitle" style="text-align:center;">Included Deliverables</p>
-                <table class="deliverables__table">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1-Minute Teaser</td>
-                            <td>Short, high-impact highlight edit with cinematic transitions — perfect for WhatsApp
-                                sharing or social media.</td>
-                        </tr>
-                        <tr>
-                            <td>2-3 Min Teaser</td>
-                            <td>Synced to romantic tracks, this edit captures the essence of your love story — ideal for
-                                Instagram/YouTube.</td>
-                        </tr>
-                        <tr>
-                            <td>5-6 Min Short Film</td>
-                            <td>A narrative-driven film with ambient sound, music overlays, and seamless editing to tell
-                                your story.</td>
-                        </tr>
-                        <tr>
-                            <td>2-3 Social Media Reels</td>
-                            <td>Vertical format (9:16), engaging 30-45 sec edits with hooks — ready for Instagram &
-                                YouTube Shorts.</td>
-                        </tr>
-                        <tr>
-                            <td>Photo Slideshow (Optional)</td>
-                            <td>A cinematic slideshow of selected stills, synced with music, for a cohesive pre-wedding
-                                presentation.</td>
-                        </tr>
-                        <tr>
-                            <td>Color-Graded Footage</td>
-                            <td>Cinematic grading tailored to your theme — romantic, vibrant, or dreamy aesthetics.</td>
-                        </tr>
-                        <tr>
-                            <td>Basic Audio Cleanup</td>
-                            <td>Noise removal and sound enhancement for clear audio in dialogues or ambient sounds.</td>
-                        </tr>
-                        <tr>
-                            <td>Logo Animation (Optional)</td>
-                            <td>Custom animated intro/outro or branding for a professional touch.</td>
-                        </tr>
-                        <tr>
-                            <td>Advanced Color Grading</td>
-                            <td>Premium cinematic color grading for a unique, high-end look.</td>
-                        </tr>
-                        <tr>
-                            <td>Soundtrack Selection</td>
-                            <td>Custom soundtrack selection and mixing for emotional impact.</td>
-                        </tr>
-                        <tr>
-                            <td>Extra Revision Round</td>
-                            <td>One additional revision round for perfect results.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="price-tag-wrap">
-                    <span class="price-tag price-tag--modern">
-                        <i class="fa-solid fa-gem price-tag__icon"></i>
-                        <span class="price-tag__text">Starting from ₹13,000/- only</span>
-                        <span class="price-tag__ribbon price-tag__ribbon--premium">Premium</span>
-                    </span>
-                </div>
             </div>
         </section>
         <section class="content content--features" data-scroll-section>
             <div class="section-overlay"></div>
             <div class="features__wrap">
-                <h2 class="features__title">Extra Add-On Services</h2>
-                <p class="features__subtitle">Value-added services to elevate your pre-wedding film experience.</p>
+                <h2 class="features__title">Features</h2>
+                <p class="features__subtitle">Our wedding videography services come with premium features to ensure your
+                    special day is captured perfectly.</p>
                 <table class="features__table">
                     <thead>
                         <tr>
                             <th>Feature</th>
                             <th>Description</th>
-                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Fast Turnaround<br><span style="font-size:0.95em; color:var(--color-alt);">Express
-                                    delivery in 3–5 days</span></td>
-                            <td>Get your film delivered quickly with our express option.</td>
-                            <td>₹2,000</td>
+                            <td>Cinematic Quality</td>
+                            <td>4K resolution with professional color grading and cinematic editing.</td>
                         </tr>
                         <tr>
-                            <td>Style Matching<br><span style="font-size:0.95em; color:var(--color-alt);">Match
-                                    reference video style</span></td>
-                            <td>We’ll match the tone, cuts, and pacing of your reference videos.</td>
-                            <td>₹1,500</td>
+                            <td>Drone Coverage</td>
+                            <td>Aerial shots to capture stunning venues and moments from unique angles.</td>
                         </tr>
                         <tr>
-                            <td>Footage from Any Source<br><span style="font-size:0.95em; color:var(--color-alt);">DSLR,
-                                    drone, mobile, etc.</span></td>
-                            <td>Editing for footage from any device or format.</td>
-                            <td>₹1,000</td>
+                            <td>Personalized Editing</td>
+                            <td>Customized edits to reflect your unique love story and preferences.</td>
                         </tr>
                         <tr>
-                            <td>Revisions<br><span style="font-size:0.95em; color:var(--color-alt);">Extra revision
-                                    rounds</span></td>
-                            <td>Additional minor revision rounds for your satisfaction.</td>
-                            <td>₹800 per round</td>
-                        </tr>
-                        <tr>
-                            <td>Cloud Delivery<br><span style="font-size:0.95em; color:var(--color-alt);">Google Drive,
-                                    WeTransfer, etc.</span></td>
-                            <td>Final files shared via your preferred cloud platform.</td>
-                            <td>₹500</td>
-                        </tr>
-                        <tr>
-                            <td>Preview Links for Clients<br><span
-                                    style="font-size:0.95em; color:var(--color-alt);">Password-protected links</span>
-                            </td>
-                            <td>Easy sharing with secure preview links for clients.</td>
-                            <td>₹400</td>
+                            <td>Multi-Camera Setup</td>
+                            <td>Multiple angles to capture every moment comprehensively.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2268,129 +1912,106 @@
         <section class="content content--about-prewedding" data-scroll-section>
             <div class="section-overlay"></div>
             <div class="about-prewedding__wrap">
-                <h2 class="about-prewedding__title">About Pre-Weddings</h2>
-                <p class="about-prewedding__subtitle">Crafting cinematic love stories that capture the essence of your
-                    journey together.</p>
-                <p class="about-prewedding__text">Pre-wedding films and teasers are more than just videos—they’re a
-                    celebration of your unique love story. I specialize in creating visually stunning and emotionally
-                    resonant films that reflect your personalities, your journey, and the moments that define your
-                    relationship. From romantic beachside shoots to vibrant urban adventures, I work closely with you to
-                    understand your vision and bring it to life with cinematic precision.</p>
-                <p class="about-prewedding__text">My approach combines creative storytelling with technical expertise. I
-                    use advanced editing tools like Adobe Premiere Pro, After Effects, and AI-enhanced software to
-                    ensure every frame is polished, every transition is seamless, and every emotion is amplified.
-                    Whether it’s a short, punchy teaser for social media or a longer, narrative-driven film, I focus on
-                    capturing the authenticity of your connection while adding a touch of cinematic magic.</p>
+                <h2 class="about-prewedding__title">About Our Wedding Services</h2>
+                <p class="about-prewedding__subtitle">We specialize in crafting cinematic wedding films that tell your
+                    unique love story with elegance and emotion.</p>
+                <p class="about-prewedding__text">Our team at MOKO Edits is dedicated to capturing the essence of your
+                    wedding day, from the smallest details to the grandest moments. We use state-of-the-art equipment and
+                    creative storytelling to ensure your memories are preserved beautifully.</p>
                 <ul class="about-prewedding__keypoints">
-                    <li class="about-prewedding__keypoint">Personalized Storytelling: Each film is tailored to reflect
-                        your unique love story and personal style.</li>
-                    <li class="about-prewedding__keypoint">Cinematic Quality: High-end editing techniques, color
-                        grading, and sound design for a professional finish.</li>
-                    <li class="about-prewedding__keypoint">Cultural Sensitivity: Understanding and incorporating
-                        traditional elements for meaningful representation.</li>
-                    <li class="about-prewedding__keypoint">Social Media Ready: Optimized formats for Instagram, YouTube,
-                        and other platforms to maximize engagement.</li>
-                    <li class="about-prewedding__keypoint">Fast Turnaround: Efficient workflows using AI tools to
-                        deliver high-quality films on time.</li>
+                    <li class="about-prewedding__keypoint">Experienced videographers with a passion for storytelling.</li>
+                    <li class="about-prewedding__keypoint">Customizable packages to suit your budget and vision.</li>
+                    <li class="about-prewedding__keypoint">High-quality production with attention to detail.</li>
+                    <li class="about-prewedding__keypoint">Fast delivery without compromising on quality.</li>
                 </ul>
-                <p class="about-prewedding__text">Every pre-wedding project is a collaboration. I listen to your ideas,
-                    incorporate your feedback, and deliver a film that feels personal and timeless. Let’s create a
-                    visual keepsake that you’ll cherish for years to come.</p>
             </div>
         </section>
         <section class="content content--cta" data-scroll-section>
             <div class="section-overlay"></div>
             <div class="cta__wrap">
-                <h2 class="cta__title" data-scroll data-scroll-speed="2">Let's Create <span>Something</span>
-                    Extraordinary</h2>
-                <p class="cta__subtitle" data-scroll data-scroll-speed="1">Your story deserves to be told with the same
-                    passion and beauty with which it was lived. Let's collaborate to create a cinematic masterpiece
-                    you'll cherish forever.</p>
-                <div class="cta__buttons" data-scroll data-scroll-speed="1">
-                    <a href="Form.html" class="cta__button cta__button--primary">
-                        <i class="fas fa-play"></i> Start Your Project <span class="btn-effect"></span>
+                <h2 class="cta__title">Ready to Capture Your <span>Love Story</span>?</h2>
+                <p class="cta__subtitle">Let’s make your wedding day unforgettable with a beautifully crafted film. Contact
+                    us today to discuss your vision!</p>
+                <div class="cta__buttons">
+                    <a href="contact.html" class="cta__button cta__button--primary">
+                        <i class="fas fa-envelope"></i> Get in Touch
+                        <span class="btn-effect"></span>
                     </a>
-                    <a href="contact.html" class="cta__button cta__button--secondary">
-                        <i class="fas fa-photo-video"></i> Get In Touch
+                    <a href="https://wa.me/+917778056001" class="cta__button cta__button--secondary">
+                        <i class="fab fa-whatsapp"></
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        <span class="btn-effect"></span>
                     </a>
                 </div>
-                <div class="cta__socials" data-scroll data-scroll-speed="0.5">
-                    <a href="#" class="cta__social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="cta__social-link"><i class="fab fa-vimeo-v"></i></a>
-                    <a href="#" class="cta__social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="cta__social-link"><i class="fab fa-linkedin-in"></i></a>
+                <div class="cta__socials">
+                    <a href="https://www.instagram.com" class="cta__social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com" class="cta__social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com" class="cta__social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.github.com" class="cta__social-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </section>
         <section class="content content--footer" data-scroll-section>
-            <div class="section-overlay"></div>
-            <div class="frame--footer">
-                <p class="frame__copyright">© 2025 MotionArc. All rights reserved.</p>
-            </div>
+            <p class="frame__copyright">© 2025 MOKO Edits. All rights reserved.</p>
         </section>
-        <div class="video-modal" id="videoModal">
+        
+        <div class="video-modal">
             <div class="video-modal__content">
                 <span class="video-modal__close"><i class="fas fa-times"></i></span>
                 <div class="video-modal__iframe"></div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/locomotive-scroll/4.1.4/locomotive-scroll.min.js"></script>
     <script>
-        // Locomotive Scroll
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector('[data-scroll-container]'),
-            smooth: true,
-            smartphone: { smooth: true },
-            tablet: { smooth: true }
-        });
-
-        // Menu Toggle
-        const menuBtn = document.querySelector('.menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const socialLinks = document.querySelector('.social-links');
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('open');
-            navLinks.classList.toggle('active');
-            socialLinks.classList.toggle('active');
-        });
-
-        // Popup Ad
-        const popup = document.getElementById('demoPopup');
-        const closePopup = document.querySelector('.popup-ad__close');
-        setTimeout(() => {
-            popup.classList.add('active');
-        }, 1000);
-        closePopup.addEventListener('click', () => {
-            popup.classList.remove('active');
-        });
-
-        // Video Modal
-        const videoModal = document.getElementById('videoModal');
-        const videoIframeContainer = videoModal.querySelector('.video-modal__iframe');
-        const videoClose = videoModal.querySelector('.video-modal__close');
-        const videoItems = document.querySelectorAll('.video-gallery__item');
-
-        videoItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const videoEmbed = item.getAttribute('data-video');
-                videoIframeContainer.innerHTML = videoEmbed;
-                videoModal.classList.add('active');
+        document.addEventListener('DOMContentLoaded', () => {
+            const scroll = new LocomotiveScroll({
+                el: document.querySelector('[data-scroll-container]'),
+                smooth: true,
+                smartphone: { smooth: true },
+                tablet: { smooth: true }
             });
-        });
 
-        videoClose.addEventListener('click', () => {
-            videoModal.classList.remove('active');
-            videoIframeContainer.innerHTML = '';
-        });
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const socialLinks = document.querySelector('.social-links');
 
-        videoModal.addEventListener('click', (e) => {
-            if (e.target === videoModal) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('open');
+                navLinks.classList.toggle('active');
+                socialLinks.classList.toggle('active');
+            });
+
+            
+
+            const videoItems = document.querySelectorAll('.video-gallery__item');
+            const videoModal = document.querySelector('.video-modal');
+            const videoModalIframe = document.querySelector('.video-modal__iframe');
+            const videoModalClose = document.querySelector('.video-modal__close');
+
+            videoItems.forEach(item => {
+                item.querySelector('.video-gallery__play-btn').addEventListener('click', () => {
+                    const videoContent = item.getAttribute('data-video');
+                    videoModalIframe.innerHTML = videoContent;
+                    videoModal.classList.add('active');
+                    scroll.stop();
+                });
+            });
+
+            videoModalClose.addEventListener('click', () => {
                 videoModal.classList.remove('active');
-                videoIframeContainer.innerHTML = '';
-            }
+                videoModalIframe.innerHTML = '';
+                scroll.start();
+            });
+
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    videoModalIframe.innerHTML = '';
+                    scroll.start();
+                }
+            });
         });
     </script>
 </body>
-
 </html>
